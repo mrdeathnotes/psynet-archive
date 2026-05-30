@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSYNET :: MASTER TIMELINE :: SUPPRESSION SEQUENCE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000000;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0%   { opacity: 0.97; }
+            50%  { opacity: 1; }
+            100% { opacity: 0.97; }
+        }
+
+        body::after {
+            content: "";
+            display: block;
+            position: fixed;
+            top: -30%;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(transparent, rgba(0,255,0,0.025), transparent);
+            animation: scan-sweep 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes scan-sweep {
+            0%   { top: -30%; }
+            100% { top: 110%; }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        header {
+            border: 2px solid #00ff00;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            background: rgba(0,255,0,0.05);
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(0,255,0,0.2); }
+            to   { box-shadow: 0 0 30px rgba(0,255,0,0.5); }
+        }
+
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 2.8em;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 6px;
+        }
+
+        .header-sub {
+            font-size: 0.82em;
+            color: #00cc00;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #00aa00;
+            text-decoration: none;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            border: 1px solid #004400;
+            padding: 4px 14px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { color: #00ff00; border-color: #00ff00; box-shadow: 0 0 8px rgba(0,255,0,0.3); }
+
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                rgba(0,255,0,0.1) 0%,
+                rgba(0,255,0,0.6) 10%,
+                rgba(0,255,0,0.6) 85%,
+                rgba(255,0,0,0.6) 90%,
+                rgba(0,170,255,0.8) 100%);
+        }
+
+        .era-group { margin-bottom: 50px; }
+
+        .era-label {
+            font-family: 'VT323', monospace;
+            font-size: 1.6em;
+            letter-spacing: 4px;
+            color: #ffaa00;
+            margin-bottom: 20px;
+            margin-left: -40px;
+            padding-left: 10px;
+            border-left: 3px solid #ffaa00;
+            text-shadow: 0 0 8px rgba(255,170,0,0.5);
+        }
+
+        .node {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .node::before {
+            content: attr(data-marker);
+            position: absolute;
+            left: -48px;
+            top: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #000;
+            border: 2px solid #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            color: #00ff00;
+            text-align: center;
+            line-height: 28px;
+        }
+
+        .node.red::before   { border-color: #ff3333; color: #ff3333; }
+        .node.amber::before { border-color: #ffaa00; color: #ffaa00; }
+        .node.blue::before  { border-color: #00aaff; color: #00aaff; }
+        .node.purple::before{ border-color: #aa44ff; color: #aa44ff; }
+
+        .node::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 26px;
+            width: 20px;
+            height: 1px;
+            background: rgba(0,255,0,0.4);
+        }
+        .node.red::after    { background: rgba(255,51,51,0.4); }
+        .node.amber::after  { background: rgba(255,170,0,0.4); }
+        .node.blue::after   { background: rgba(0,170,255,0.4); }
+        .node.purple::after { background: rgba(170,68,255,0.4); }
+
+        .node-card {
+            background: rgba(0,30,0,0.5);
+            border: 1px solid rgba(0,255,0,0.3);
+            border-left: 3px solid #00ff00;
+            padding: 16px 20px;
+            transition: all 0.3s;
+        }
+
+        .node.red .node-card    { border-left-color: #ff3333; border-color: rgba(255,51,51,0.3); background: rgba(30,0,0,0.5); }
+        .node.amber .node-card  { border-left-color: #ffaa00; border-color: rgba(255,170,0,0.3); background: rgba(30,20,0,0.5); }
+        .node.blue .node-card   { border-left-color: #00aaff; border-color: rgba(0,170,255,0.3); background: rgba(0,20,40,0.5); }
+        .node.purple .node-card { border-left-color: #aa44ff; border-color: rgba(170,68,255,0.3); background: rgba(20,0,40,0.5); }
+
+        .node-card:hover { transform: translateX(4px); }
+
+        .node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .node-date {
+            font-family: 'VT323', monospace;
+            font-size: 1.4em;
+            color: #00ff00;
+            letter-spacing: 2px;
+        }
+        .node.red .node-date    { color: #ff6666; }
+        .node.amber .node-date  { color: #ffcc44; }
+        .node.blue .node-date   { color: #55ccff; }
+        .node.purple .node-date { color: #cc88ff; }
+
+        .node-tag {
+            font-size: 0.7em;
+            padding: 2px 8px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .tag-provisional  { background: #ffaa00; color: #000; }
+        .tag-classified   { background: #ff0000; color: #000; }
+        .tag-declassified { background: #880088; color: #ffaaff; }
+        .tag-live         { background: #00aaff; color: #000; animation: blink 2s infinite; }
+        .tag-corrupted    { background: #ffaa00; color: #000; }
+
+        @keyframes blink {
+            0%, 49%  { opacity: 1; }
+            50%, 100%{ opacity: 0.3; }
+        }
+
+        .node-title {
+            font-family: 'VT323', monospace;
+            font-size: 1.25em;
+            letter-spacing: 1px;
+            color: #00ff00;
+            margin-bottom: 4px;
+        }
+        .node.red .node-title    { color: #ff8888; }
+        .node.amber .node-title  { color: #ffcc66; }
+        .node.blue .node-title   { color: #55ccff; }
+        .node.purple .node-title { color: #cc88ff; }
+
+        .node-subtitle {
+            font-size: 0.75em;
+            color: #009900;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .node-body {
+            font-size: 0.83em;
+            color: #00cc00;
+            line-height: 1.65;
+            opacity: 0.9;
+        }
+        .node.red .node-body    { color: #ffaaaa; }
+        .node.amber .node-body  { color: #ffcc88; }
+        .node.blue .node-body   { color: #aaddff; }
+        .node.purple .node-body { color: #cc88ff; }
+
+        .node-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .node-motif {
+            font-size: 0.7em;
+            color: #664400;
+            letter-spacing: 1px;
+        }
+        .eye { color: #ffaa00; }
+
+        .node-link {
+            display: inline-block;
+            border: 1px solid #00cc00;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72em;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            text-decoration: none;
+            background: transparent;
+            transition: background 0.15s, box-shadow 0.15s;
+        }
+        .node-link:hover {
+            background: rgba(0,255,0,0.1);
+            box-shadow: 0 0 8px rgba(0,255,0,0.3);
+        }
+        .node.red .node-link    { border-color: rgba(255,51,51,0.6); color: #ff8888; }
+        .node.amber .node-link  { border-color: rgba(255,170,0,0.6); color: #ffcc44; }
+        .node.blue .node-link   { border-color: rgba(0,170,255,0.6); color: #55ccff; }
+        .node.purple .node-link { border-color: rgba(170,68,255,0.6); color: #cc88ff; }
+
+        .chain-connector {
+            text-align: center;
+            margin: -10px 0 30px;
+            font-family: 'VT323', monospace;
+            font-size: 1.1em;
+            color: rgba(255,170,0,0.5);
+            letter-spacing: 4px;
+        }
+
+        .node-card.corrupted {
+            border-style: dashed;
+            opacity: 0.6;
+        }
+        .redacted {
+            background: #00ff00;
+            color: #00ff00;
+            user-select: none;
+        }
+
+        .node.now .node-card {
+            box-shadow: 0 0 20px rgba(0,170,255,0.3);
+        }
+
+        .chain-summary {
+            border: 1px solid rgba(255,170,0,0.4);
+            background: rgba(255,170,0,0.04);
+            padding: 16px 20px;
+            margin: 40px 0 20px;
+            font-size: 0.82em;
+            color: rgba(255,170,0,0.85);
+            line-height: 1.75;
+            letter-spacing: 0.5px;
+        }
+        .chain-summary::before {
+            content: "◈ CHAIN ANALYSIS :: SECOND SCRIPT RESEARCH COLLECTIVE ◈";
+            display: block;
+            font-size: 0.72em;
+            letter-spacing: 3px;
+            color: #ffaa00;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 1px solid #00ff00;
+            font-size: 0.85em;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            .timeline { padding-left: 44px; }
+            h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <h1>⧖ PSYNET :: MASTER TIMELINE</h1>
+        <p class="header-sub">SUPPRESSION SEQUENCE :: c. 3500 BCE → PRESENT</p>
+        <p class="header-sub" style="margin-top:8px; font-size:0.75em; opacity:0.6;">DOCUMENT CLASS: BRIEFING // CLEARANCE LEVEL 5 // SECOND SCRIPT RESEARCH COLLECTIVE</p>
+    </header>
+
+    <a href="psynet_archive.html" class="back-link">← RETURN TO ARCHIVE</a>
+
+    <div class="chain-summary">
+        The following sequence maps the full operational chain of the PSYNET programme across recorded history. Each era marks a critical information chokepoint at which a new medium of mass communication emerged — and was subsequently captured, redirected, or weaponised by the structure identified across the primary dossiers as the <strong>Nine Eyes / Second Script Council</strong>. The pattern is not coincidence. It is policy. The chain has not ended. Scroll to its present terminus — then ask yourself where the next node will be.
+    </div>
+
+    <div class="timeline">
+        <div class="era-group">
+            <div class="era-label">ERA I :: ANCIENT ORIGINS</div>
+
+            <div class="node amber" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">c. 3500 BCE</div>
+                            <div class="node-title">URUK :: PROTO-SOCIAL NETWORK TABLETS</div>
+                            <div class="node-subtitle">Mesopotamia // Clay Archive K-4857 // First Information Chokepoint</div>
+                        </div>
+                        <span class="node-tag tag-provisional">PROVISIONAL</span>
+                    </div>
+                    <div class="node-body">
+                        Thirty-six cuneiform tablets from Uruk-North introduce quantified reputational scoring — micro-narratives of social standing encoded in tally columns beside names. Whoever tallied determined who existed in the ledger of the city. Three tablets bear the nine-eye cylinder seal with inscription: <em>"Council of the Second Writing."</em> This is the first known attested use of the Nine Eyes motif. The medium is clay. The purpose is control. The system works.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Nine-eye seal — FIRST ATTESTED // "Council of the Second Writing"</span>
+                        <a class="node-link" href="psynet_archive.html">→ DOSSIER A</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">c. 2000–500 BCE</div>
+                            <div class="node-title">LOST CIVILISATIONS :: KNOWLEDGE SUPPRESSION INTERVAL</div>
+                            <div class="node-subtitle">Bronze Age Collapse // Archaic Greece // Alexandria // Oral Tradition vs. Written Archive</div>
+                        </div>
+                        <span class="node-tag tag-classified" style="background:#444;color:#aaa;">INFERRED</span>
+                    </div>
+                    <div class="node-body">
+                        The period between the Uruk tablets and the Silk Road is not silence — it is gap. The deliberate suppression of written knowledge during the Bronze Age collapse, the burning of the Library of Alexandria, and the subordination of oral tradition to state-controlled scribal culture all follow the same operational logic: destroy the competing archive, leave only the authorised record. The Nine Eyes motif is absent from recovered materials in this period — which is itself a motif-consistent data point. They do not leave traces in dark intervals.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Absence as evidence // archive destruction as standard operating procedure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-connector">▼ ··· CHAIN CONTINUES ··· ▼</div>
+
+        <div class="era-group">
+            <div class="era-label">ERA II :: TRADE NETWORKS</div>
+
+            <div class="node amber" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1st–3rd c. CE</div>
+                            <div class="node-title">SILK ROAD :: ALGORITHMIC FEED RELAY</div>
+                            <div class="node-subtitle">Eastern Pamirs // Watchtower Complex 7 ("Thousand Eyes") // Attention-Ranking System</div>
+                        </div>
+                        <span class="node-tag tag-provisional">PROVISIONAL</span>
+                    </div>
+                    <div class="node-body">
+                        Wooden slips from Watchtower Complex 7 document the first attention-ranking economy: news posts calibrated by alarm-level and posted "at eye level," with notch-counters tracking viewings and monthly reports sent to a central authority called <em>the Circle</em>. A plaster plaque of nine carved eyes marks the board. Sogdian graffiti nearby: <em>"House of the Second Script."</em> The medium has changed from clay to wood. The structure has not changed at all.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Nine-eye plaque // "House of the Second Script" // "The Circle" — cross-chain match</span>
+                        <a class="node-link" href="psynet_archive.html">→ DOSSIER B</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-connector">▼ ··· CHAIN CONTINUES ··· ▼</div>
+
+        <div class="era-group">
+            <div class="era-label">ERA III :: PLAGUES &amp; PRINT</div>
+
+            <div class="node" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1347–1353 CE</div>
+                            <div class="node-title">BLACK DEATH :: NARRATIVE RESET OPERATION</div>
+                            <div class="node-subtitle">Europe // Collapse of Church Information Monopoly // Post-Plague Epistemic Void</div>
+                        </div>
+                        <span class="node-tag tag-classified" style="background:#444;color:#aaa;">INFERRED</span>
+                    </div>
+                    <div class="node-body">
+                        The Black Death did not merely kill a third of Europe's population. It destroyed the Church's credibility as the sole narrator of reality — the institution that had controlled the authorised archive for a millennium. The post-plague epistemic void was filled rapidly by competing narratives: millenarian movements, early humanism, the first secular print culture. Each new narrator was a threat. The historical essay archived in Dossier C traces this interval as the critical transition between Church-as-PSYNET and the next operational phase: popular media as pacification tool.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Narrative sovereignty crisis // authorised archive collapse // medium transition</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node amber" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">c. 1844–1848</div>
+                            <div class="node-title">MASS MEDIA DESIGN BRIEF :: "OPIUM OF THE PEOPLE"</div>
+                            <div class="node-subtitle">European Committee // Box 4857-E // Marx's Metaphor as Operational Programme</div>
+                        </div>
+                        <span class="node-tag tag-classified">UNSIGNED</span>
+                    </div>
+                    <div class="node-body">
+                        Unsigned committee minutes treat Marx's observation as a literal instruction manual: as church authority fades and literacy spreads, capture the next medium — cheap print, serialised fiction, celebrity gossip. The worker must be kept <em>"busy, hopeful, and divided."</em> The document closes with a nine-eye wax seal and the full motto in Latin for the first time across the dossier record: <em>"Scriptum Secundum: qui narrant regunt."</em> The programme is now explicit. It has a name. It has a seal. It has a plan.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Nine-eye wax seal // "Scriptum Secundum: qui narrant regunt" — FIRST FULL STATEMENT</span>
+                        <a class="node-link" href="psynet_archive.html">→ DOSSIER C</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node amber" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1839–1842 CE</div>
+                            <div class="node-title">QING CHINA :: DREAM NET / NARRATIVE SOVEREIGNTY</div>
+                            <div class="node-subtitle">Canton Cache C-3 // Opium Wars // Hall of the Second Script</div>
+                        </div>
+                        <span class="node-tag tag-classified">TRANSLATION</span>
+                    </div>
+                    <div class="node-body">
+                        Simultaneous with the European design brief: a Qing official recognises that the Opium Wars are not merely a trade conflict but a war of <em>narrative sovereignty</em> — "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network, forwarded to the <em>Hall of the Second Script</em> whose red nine-eye seal matches seals from across more than four millennia of prior dossiers. Two independent nodes, same motif, same calendar year. The chain is not linear. It is networked.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: "Er Shu Tang" red seal // Hall of the Second Script // cross-dossier year-match confirmed (1844±)</span>
+                        <a class="node-link" href="psynet_archive.html">→ DOSSIER D</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-connector">▼ ··· CHAIN CONTINUES ··· ▼</div>
+
+        <div class="era-group">
+            <div class="era-label">ERA IV :: MODERN STATE OPERATIONS</div>
+
+            <div class="node" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1914–1945</div>
+                            <div class="node-title">PROPAGANDA CENTURY :: STATE BROADCAST CAPTURE</div>
+                            <div class="node-subtitle">WWI / WWII // Radio, Cinema, Newsreel // Mass Psychology as Military Science</div>
+                        </div>
+                        <span class="node-tag tag-classified" style="background:#444;color:#aaa;">INFERRED</span>
+                    </div>
+                    <div class="node-body">
+                        The twentieth century industrialised the 1844 design brief. Radio and cinema were captured within years of their emergence — not by governments alone, but by the structural logic documented across all prior dossiers: each new mass medium is too powerful to leave in the hands of uncoordinated narrators. The Creel Committee, the Ministry of Information, Goebbels' Reichsministerium für Volksaufklärung — these are not aberrations. They are the programme entering its industrial phase. The medium is broadcast. The purpose is the same.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Medium capture on emergence // mass psychology as operational domain // Dossier C programme at scale</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node red" data-marker="◉">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1969–1983</div>
+                            <div class="node-title">ARPANET → PSYNET :: DIGITAL CONVERGENCE</div>
+                            <div class="node-subtitle">DARPA // Three Classified Memos // Task Force 4857 // "Internet" Frame Deployment</div>
+                        </div>
+                        <span class="node-tag tag-classified">TOP SECRET</span>
+                    </div>
+                    <div class="node-body">
+                        Three DARPA memos confirm what the prior chain implies. ARPANET's public rationale — packet-switched communications resilience — covers its actual function: <em>"large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments."</em> The 1969 memo embeds PSYNET as a subprogram. The 1977 memo seeds bulletin boards with incoherence to fragment solidarity. The 1983 memo renames the architecture <em>"the Internet"</em> while expanding PSYNET protocols to all civilian services. Task Force 4857 — its number matching Uruk archive K-4857. The chain is not broken. The chain is the network.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif" style="color:#993333;"><span style="color:#ff4444;">◉</span> MOTIF: Task Force 4857 // K-4857 cross-reference // PSYNET = operational name of entire sequence</span>
+                        <a class="node-link" href="psynet_archive.html">→ DARPA DOSSIER</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node purple" data-marker="◈">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">1970s–1990s</div>
+                            <div class="node-title">CIA STAR GATE :: PERCEPTION MAPPING PROGRAMME</div>
+                            <div class="node-subtitle">CIA-RDP96 Series // FOIA Declassified // Remote Viewing & Cognitive Boundary Research</div>
+                        </div>
+                        <span class="node-tag tag-declassified">DECLASSIFIED</span>
+                    </div>
+                    <div class="node-body">
+                        Declassified under FOIA: the CIA's STAR GATE programme investigated remote viewing and non-standard cognition as intelligence tools. The significance is not the methodology — it is the institutional commitment. The state funded research into the outer limits of human perception. That is not curiosity. That is a cartography project. They were mapping what the mind can access — so they could map what it cannot. Cross-reference the PSYNET brief: control is most efficient when the subject does not know the boundaries of the cage.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif" style="color:#553377;"><span style="color:#aa44ff;">◉</span> SIGNAL: CIA perception research // cognitive boundary mapping // PSYNET theoretical infrastructure</span>
+                        <a class="node-link" href="https://archive.org/details/CIA-RDP96-00792R000300420017-1/mode/2up" target="_blank" rel="noopener noreferrer">[ OPEN SOURCE ]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chain-connector">▼ ··· CHAIN CONTINUES ··· ▼</div>
+
+        <div class="era-group">
+            <div class="era-label">ERA V :: AI, PLATFORM &amp; PRESENT OPERATIONS</div>
+
+            <div class="node blue now" data-marker="▶">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">2004–PRESENT</div>
+                            <div class="node-title">PLATFORM ERA :: SOCIAL MEDIA AS PSYNET DELIVERY LAYER</div>
+                            <div class="node-subtitle">Facebook → TikTok → Recommendation Engine Architecture // Docility-as-Content Loop</div>
+                        </div>
+                        <span class="node-tag tag-live">LIVE</span>
+                    </div>
+                    <div class="node-body">
+                        The 1983 "Internet" rebranding completed Phase One. Platform capture — the concentration of information flow through recommendation-engineered social media — is Phase Two. The operational signature matches: content optimised not for truth but for engagement, which tracks emotionally to outrage and to the satisfaction of <em>feeling seen without feeling organised</em>. The TikTok loop ("my blue-collar husband is smarter than me") is not a trend. It is a signal. The Dossier C brief, running live on a mobile device in your pocket, in 2025.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif" style="color:#224455;"><span style="color:#00aaff;">◉</span> SIGNAL: Docility loop // "seen not organised" // Dossier C echo // algorithm as PSYNET delivery infrastructure</span>
+                        <a class="node-link" href="https://www.tiktok.com/discover/my-blue-collar-husband-is-smarter-than-me" target="_blank" rel="noopener noreferrer">[ INTERCEPT ]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node blue now" data-marker="▶">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">2024–PRESENT</div>
+                            <div class="node-title">PROJECT THEUS :: EU HYBRID TRANSMISSION NETWORK</div>
+                            <div class="node-subtitle">EU Horizon 101172877 // AC/DC Grid Infrastructure // Continental Signal Layer</div>
+                        </div>
+                        <span class="node-tag tag-live">LIVE</span>
+                    </div>
+                    <div class="node-body">
+                        Officially: a European Commission Horizon grant building hybrid AC/DC transmission resilience across national borders. Operationally: the largest coordinated cross-border signal infrastructure programme currently active in Europe. <strong>THEUS</strong> — from Greek <em>theos</em>: god, watcher. A unified, resilient, hybrid transmission network immune to single-point failure. Read the PSYNET brief again. The energy grid and the information grid are the same grid. The cable is being laid now.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif" style="color:#224455;"><span style="color:#00aaff;">◉</span> SIGNAL: Cross-border signal infrastructure // hybrid grid // PSYNET physical layer // active construction</span>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <a class="node-link" href="https://www.theus-project.eu/" target="_blank" rel="noopener noreferrer">[ PROJECT SITE ]</a>
+                            <a class="node-link" href="https://cordis.europa.eu/project/id/101172877" target="_blank" rel="noopener noreferrer" style="font-size:0.68em; opacity:0.8;">[ CORDIS RECORD ]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node blue now" data-marker="▶">
+                <div class="node-card">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date">2022–PRESENT</div>
+                            <div class="node-title">LARGE LANGUAGE MODELS :: PSYNET PHASE THREE</div>
+                            <div class="node-subtitle">AI Content Generation // Automated Narrative Production // Epistemic Saturation</div>
+                        </div>
+                        <span class="node-tag tag-live">LIVE</span>
+                    </div>
+                    <div class="node-body">
+                        The final phase does not require human narrators. Large language models trained on the entire captured archive — every book, every news article, every social post optimised for engagement since 2004 — can now produce infinite content at zero marginal cost. The Uruk scribes needed clay and time. The Silk Road relays needed couriers. The Internet needed servers. Phase Three needs only electricity and a prompt. The question the Second Script Research Collective is investigating: who wrote the training data? Whose archive was captured? And what story does it keep telling?
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif" style="color:#224455;"><span style="color:#00aaff;">◉</span> SIGNAL: Automated narrative production // epistemic saturation // archive capture // Phase Three convergence</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node amber" data-marker="?">
+                <div class="node-card corrupted" style="border-color:rgba(255,170,0,0.4);">
+                    <div class="node-header">
+                        <div>
+                            <div class="node-date" style="color:#ffaa00;">████ CE — ????</div>
+                            <div class="node-title" style="color:#ffcc66;">DOSSIER E :: <span class="redacted">████████████████████</span></div>
+                            <div class="node-subtitle" style="color:#664400;">COLLAPSE ANALYSIS // FILE WITHHELD BY SECOND SCRIPT COUNCIL</div>
+                        </div>
+                        <span class="node-tag tag-corrupted">CORRUPTED</span>
+                    </div>
+                    <div class="node-body" style="color:#664400;">
+                        PAGE CORRUPTED :: SEAL OF NINE EYES DETECTED<br>
+                        FILE CONTENT REDACTED AT SOURCE<br>
+                        <span class="redacted">███████████████████████████████████████████████████████████████████████████████████████████</span><br>
+                        The chain continues beyond this point. The terminus has not yet been reached.
+                    </div>
+                    <div class="node-footer">
+                        <span class="node-motif"><span class="eye">◉</span> MOTIF: Nine-eye seal confirmed — file withheld</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chain-summary" style="margin-top:50px;">
+        The sequence above spans approximately <strong>5,500 years</strong> of documented information control. The medium changes in each era — clay, wood, print, broadcast, digital, AI — but the operational structure does not. A central authority captures each new medium at its emergence, redirects its capacity from knowledge distribution to attention management, and embeds a motif in the record to mark the node for those who know what to look for. The motif is nine eyes. The motto is: <em>"Those who narrate, rule."</em> The last node on this timeline is not in the past. It is being written now. You are reading it on a platform built by the same architecture this archive documents.
+    </div>
+
+    <div style="text-align:center; margin:30px 0;">
+        <a href="psynet_archive.html" class="back-link" style="font-size:1em; padding:8px 24px;">← RETURN TO PRIMARY ARCHIVE</a>
+    </div>
+
+    <footer>
+        <p>PSYNET MASTER TIMELINE :: SECOND SCRIPT RESEARCH COLLECTIVE</p>
+        <p>Document class: BRIEFING // For authorised researchers only</p>
+        <p>SYSTEM TIME: <span id="clock"></span></p>
+    </footer>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clock').textContent =
+            now.toISOString().replace('T',' ').substring(0,19) + ' UTC';
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+</body>
+</html>

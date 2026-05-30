@@ -297,7 +297,6 @@
             animation: blink 2s step-end infinite;
         }
 
-        /* RECOVERED SIGNAL section */
         .signal-section { border-color: #aa44ff; background: rgba(30,0,50,0.4); }
         .signal-section .file-item { border-left-color: #aa44ff; }
         .signal-section .file-item:hover { background: rgba(80,0,120,0.3); }
@@ -308,7 +307,6 @@
             padding: 8px 20px 0;
         }
 
-        /* LIVE INTERCEPTS section */
         .intercept-section { border-color: #00aaff; background: rgba(0,20,40,0.4); }
         .intercept-section .file-item { border-left-color: #00aaff; }
         .intercept-section .file-item:hover { background: rgba(0,60,100,0.3); }
@@ -348,6 +346,85 @@
 
         .appendix { margin-top: 10px; opacity: 0.7; }
         .appendix:hover { opacity: 0.9; }
+
+        .era-chain {
+            font-size: 0.72em;
+            color: rgba(255,170,0,0.55);
+            letter-spacing: 1px;
+            margin: 5px 0 8px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .era-chain .era-active {
+            color: #ffaa00;
+            font-weight: bold;
+        }
+        .era-chain a {
+            color: rgba(0,170,255,0.7);
+            text-decoration: none;
+            font-size: 0.92em;
+            letter-spacing: 1px;
+            margin-left: 8px;
+            border-bottom: 1px dotted rgba(0,170,255,0.4);
+        }
+        .era-chain a:hover { color: #55ccff; }
+
+        .timeline-card {
+            border: 1px dashed rgba(255,170,0,0.5);
+            background: rgba(20,15,0,0.6);
+            padding: 18px 22px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .timeline-card:hover {
+            border-color: rgba(255,170,0,0.9);
+            box-shadow: 0 0 16px rgba(255,170,0,0.15);
+        }
+        .timeline-card::before {
+            content: "◈ CLASSIFIED BRIEFING DOCUMENT ◈";
+            display: block;
+            font-size: 0.7em;
+            letter-spacing: 3px;
+            color: rgba(255,170,0,0.6);
+            margin-bottom: 10px;
+        }
+        .tl-title {
+            font-family: 'VT323', monospace;
+            font-size: 1.6em;
+            color: #ffcc44;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            text-shadow: 0 0 8px rgba(255,170,0,0.3);
+        }
+        .tl-sub {
+            font-size: 0.78em;
+            color: #996600;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .tl-desc {
+            font-size: 0.83em;
+            color: rgba(255,204,68,0.75);
+            line-height: 1.65;
+            margin-bottom: 12px;
+        }
+        .tl-btn {
+            display: inline-block;
+            border: 1px solid rgba(255,170,0,0.7);
+            color: #ffcc44;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            padding: 5px 18px;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.2s;
+        }
+        .tl-btn:hover {
+            background: rgba(255,170,0,0.1);
+            box-shadow: 0 0 12px rgba(255,170,0,0.3);
+            color: #fff;
+        }
 
         footer {
             text-align: center;
@@ -398,9 +475,16 @@
         The <strong style="color:#ffaa00;">nine-eye seal</strong> — a ring of nine stylised eyes around a blank centre — and the inscription <strong style="color:#ffaa00;">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history. The chain has not ended. It is active now.
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- SECTION 1: PRIMARY DOSSIERS A–D                                 -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="timeline-card">
+        <div class="tl-title">⧖ PSYNET MASTER TIMELINE :: SUPPRESSION SEQUENCE</div>
+        <div class="tl-sub">BRIEFING DOCUMENT // c. 3500 BCE → PRESENT // SECOND SCRIPT RESEARCH COLLECTIVE</div>
+        <div class="tl-desc">
+            The five primary dossiers below are nodes in a larger chain spanning approximately 5,500 years of documented information control. This classified briefing document maps the full operational sequence — from the Uruk clay tablets through the Silk Road attention-ranking relays, the Black Death narrative reset, mass media industrialisation, ARPANET convergence, and the current AI phase. Each dossier is annotated with its position in the chain. The full timeline is available to cleared researchers only.
+        </div>
+        <a href="timeline.html" class="tl-btn">[ ACCESS MASTER TIMELINE ]</a>
+        <span style="float:right; font-size:0.7em; color:rgba(255,170,0,0.4); margin-top:6px; letter-spacing:2px;">CLEARANCE LEVEL 5 REQUIRED</span>
+    </div>
+
     <div class="file-section">
         <div class="section-header" onclick="toggleSection(this)">
             <h2>▸ PRIMARY DOSSIERS :: ANCIENT CYCLES OF CONTROL</h2>
@@ -408,14 +492,17 @@
         </div>
         <div class="file-list">
 
-            <!-- DOSSIER A -->
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520A%2520%25E2%2580%2593%2520Mesopotamia%2520%25E2%2580%259CProto%25E2%2580%2591Social%2520Network%25E2%2580%259D%2520Tablets.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520A%2520%25E2%2580%2593%2520Mesopotamia%2520%25E2%2580%259CProto%25E2%2580%2591Social%2520Network%2520Tablets.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER A — MESOPOTAMIA: PROTO-SOCIAL NETWORK TABLETS
                         </a>
                         <div class="file-subtitle">Clay Archive K-4857 :: Reputation Ledgers, Tally Marks &amp; the First "Comment Section"</div>
+                        <div class="era-chain">
+                            <span class="era-active">[3500 BCE]</span> → <span style="opacity:0.5">1st c. CE</span> → <span style="opacity:0.5">1840s</span> → <span style="opacity:0.5">1969</span> → <span style="opacity:0.5">NOW</span>
+                            <a href="timeline.html">↗ SEE TIMELINE</a>
+                        </div>
                     </div>
                     <span class="file-era">c. 3500 BCE</span>
                 </div>
@@ -428,18 +515,21 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye seal // "Council of the Second Writing" — first attested</span>
                     </div>
-                    <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520A%2520%25E2%2580%2593%2520Mesopotamia%2520%25E2%2580%259CProto%25E2%2580%2591Social%2520Network%25E2%2580%259D%2520Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520A%2520%25E2%2580%2593%2520Mesopotamia%2520%25E2%2580%259CProto%25E2%2580%2591Social%2520Network%2520Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
-            <!-- DOSSIER B -->
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520B%2520%25E2%2580%2593%2520Silk%2520Road%2520%25E2%2580%259CAlgorithmic%2520Feed%25E2%2580%259D%2520Relay%2520.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520B%2520%25E2%2580%2593%2520Silk%2520Road%2520%25E2%2580%259CAlgorithmic%2520Feed%2520Relay%2520.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER B — SILK ROAD: ALGORITHMIC FEED RELAY
                         </a>
                         <div class="file-subtitle">Watchtower Complex 7 ("Thousand Eyes") :: Attention-Ranking, Notch Counters &amp; "The Circle"</div>
+                        <div class="era-chain">
+                            <span style="opacity:0.5">3500 BCE</span> → <span class="era-active">[1st c. CE]</span> → <span style="opacity:0.5">1840s</span> → <span style="opacity:0.5">1969</span> → <span style="opacity:0.5">NOW</span>
+                            <a href="timeline.html">↗ SEE TIMELINE</a>
+                        </div>
                     </div>
                     <span class="file-era">1st–3rd c. CE</span>
                 </div>
@@ -452,11 +542,10 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye plaque // "House of the Second Script" // "The Circle"</span>
                     </div>
-                    <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520B%2520%25E2%2580%2593%2520Silk%2520Road%2520%25E2%2580%259CAlgorithmic%2520Feed%25E2%2580%259D%2520Relay%2520.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FDossier%2520B%2520%25E2%2580%2593%2520Silk%2520Road%2520%25E2%2580%259CAlgorithmic%2520Feed%2520Relay%2520.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
-            <!-- DOSSIER C -->
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
@@ -464,6 +553,10 @@
                             DOSSIER C — OPIUM OF THE PEOPLE: MASS MEDIA DESIGN BRIEF
                         </a>
                         <div class="file-subtitle">Committee Minutes, Box 4857-E :: Marx's Metaphor Converted into a Programme for Mass Distraction</div>
+                        <div class="era-chain">
+                            <span style="opacity:0.5">3500 BCE</span> → <span style="opacity:0.5">1st c. CE</span> → <span class="era-active">[1844–1848]</span> → <span style="opacity:0.5">1969</span> → <span style="opacity:0.5">NOW</span>
+                            <a href="timeline.html">↗ SEE TIMELINE</a>
+                        </div>
                     </div>
                     <span class="file-era">c. 1844–1848</span>
                 </div>
@@ -480,7 +573,6 @@
                 </div>
             </div>
 
-            <!-- DOSSIER D -->
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
@@ -488,6 +580,10 @@
                             DOSSIER D — QING CHINA: DREAM NET / OPIUM NET ARCHIVE
                         </a>
                         <div class="file-subtitle">Canton Cache C-3 :: Narrative Sovereignty, Rumour Tracking &amp; the Hall of the Second Script</div>
+                        <div class="era-chain">
+                            <span style="opacity:0.5">3500 BCE</span> → <span style="opacity:0.5">1st c. CE</span> → <span class="era-active">[1839–1842]</span> → <span style="opacity:0.5">1969</span> → <span style="opacity:0.5">NOW</span>
+                            <a href="timeline.html">↗ SEE TIMELINE</a>
+                        </div>
                     </div>
                     <span class="file-era">1839–1842 CE</span>
                 </div>
@@ -504,7 +600,6 @@
                 </div>
             </div>
 
-            <!-- Corrupted placeholder -->
             <div class="file-item" style="border-left-color:#ffaa00;">
                 <span class="dead-link">DOSSIER_E_<span class="redacted">████████</span>_COLLAPSE_ANALYSIS.pdf</span>
                 <div class="file-desc" style="color:#664400;">PAGE CORRUPTED :: SEAL OF NINE EYES DETECTED — FILE WITHHELD BY SECOND SCRIPT COUNCIL</div>
@@ -514,9 +609,6 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- SECTION 2: TERMINAL NODE — ARPANET / PSYNET                    -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section terminal-section" style="border-color:#ff3333;">
         <div class="section-header" onclick="toggleSection(this)" style="background:#110000; border-bottom-color:#ff3333;">
             <h2 style="color:#ff6666;">▸ TERMINAL NODE :: DARPA / ARPANET → PSYNET CONVERGENCE</h2>
@@ -531,6 +623,10 @@
                             MILITARY FILES — DARPA / ARPANET AS PSYOP
                         </a>
                         <div class="file-subtitle" style="color:#993333;">Three Classified Memos (1969 / 1977 / 1983): PSYNET Subprogram, Dummy Profiles &amp; the "Internet" Frame</div>
+                        <div class="era-chain" style="color:rgba(255,80,80,0.5);">
+                            <span style="opacity:0.5">3500 BCE</span> → <span style="opacity:0.5">1st c. CE</span> → <span style="opacity:0.5">1840s</span> → <span style="color:#ff6666; font-weight:bold;">[1969–1983]</span> → <span style="opacity:0.5">NOW</span>
+                            <a href="timeline.html" style="color:rgba(255,100,100,0.7); border-color:rgba(255,80,80,0.4);">↗ SEE TIMELINE</a>
+                        </div>
                     </div>
                     <span class="file-era">1969–1983</span>
                 </div>
@@ -552,9 +648,6 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- SECTION 3: RECOVERED SIGNAL — CIA DECLASSIFIED                  -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section signal-section">
         <div class="section-header" onclick="toggleSection(this)" style="background:#0d0020; border-bottom-color:#aa44ff;">
             <h2 style="color:#cc88ff;">▸ RECOVERED SIGNAL :: DECLASSIFIED AGENCY DOCUMENTS</h2>
@@ -592,7 +685,6 @@
         </div>
     </div>
 
-    <!-- Nine Eyes Symbol -->
     <div class="nine-eyes">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="30" fill="none" stroke="#00ff00" stroke-width="2"/>
@@ -615,9 +707,6 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- SECTION 4: LIVE INTERCEPTS — CONTEMPORARY OPERATIONS            -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section intercept-section">
         <div class="section-header" onclick="toggleSection(this)" style="background:#000d1a; border-bottom-color:#00aaff;">
             <h2 style="color:#55ccff;">▸ LIVE INTERCEPTS :: PSYNET ACTIVE OPERATIONS [CURRENT CYCLE]</h2>
@@ -626,7 +715,6 @@
         <div class="file-list">
             <p class="intercept-label">&gt;&gt; REAL-TIME SIGNAL CAPTURE :: BEHAVIOURAL + INFRASTRUCTURE LAYER :: OPERATIONS ONGOING</p>
 
-            <!-- TikTok intercept -->
             <div class="file-item" style="border-left-color:#00aaff;">
                 <div class="file-item-meta">
                     <div class="file-title-block">
@@ -650,7 +738,6 @@
                 </div>
             </div>
 
-            <!-- THEUS intercept -->
             <div class="file-item" style="border-left-color:#00aaff;">
                 <div class="file-item-meta">
                     <div class="file-title-block">
@@ -683,9 +770,6 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- APPENDIX                                                         -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section appendix" style="border-color:#446644;">
         <div class="section-header" onclick="toggleSection(this)" style="background:#001a00; border-bottom-color:#446644;">
             <h2 style="color:#669966;">▸ APPENDIX :: SUPPLEMENTAL FILES &amp; STATISTICAL RECORD</h2>
