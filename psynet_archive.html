@@ -5,64 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSYNET ARCHIVE :: CLASSIFIED</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --green:       #00ff00;
-            --green-dim:   #00cc00;
-            --green-faint: #006600;
-            --amber:       #ffaa00;
-            --red:         #ff3333;
-            --bg:          #000000;
-            --surface:     #050505;
-            --surface-2:   #0a0a0a;
-            --border:      rgba(0,255,0,0.25);
-            --border-bright: rgba(0,255,0,0.6);
-        }
-
         body {
-            background: var(--bg);
-            color: var(--green);
+            background: #000000;
+            color: #00ff00;
             font-family: 'Share Tech Mono', 'Courier New', monospace;
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* CRT Screen Effect */
         body::before {
             content: " ";
             display: block;
             position: fixed;
-            inset: 0;
-            background:
-                linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.18) 50%),
-                linear-gradient(90deg, rgba(255,0,0,0.04), rgba(0,255,0,0.015), rgba(0,0,255,0.04));
-            background-size: 100% 3px, 4px 100%;
-            z-index: 999;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
             pointer-events: none;
-            animation: crt-flicker 0.12s infinite;
+            animation: flicker 0.15s infinite;
         }
 
-        @keyframes crt-flicker {
-            0%   { opacity: 0.96; }
+        @keyframes flicker {
+            0%   { opacity: 0.97; }
             50%  { opacity: 1; }
             100% { opacity: 0.97; }
         }
 
+        /* Scan line sweep */
         body::after {
             content: "";
             display: block;
             position: fixed;
-            top: -100%;
+            top: -30%;
             left: 0;
             width: 100%;
             height: 30%;
             background: linear-gradient(transparent, rgba(0,255,0,0.025), transparent);
             animation: scan-sweep 8s linear infinite;
             pointer-events: none;
-            z-index: 998;
+            z-index: 1;
         }
 
         @keyframes scan-sweep {
@@ -71,674 +58,626 @@
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: clamp(1rem, 4vw, 2rem);
+            padding: 20px;
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
+        /* HEADER (original style) */
         header {
-            border: 2px solid var(--green);
-            padding: 2rem;
-            margin-bottom: 3rem;
+            border: 2px solid #00ff00;
+            padding: 30px;
+            margin-bottom: 40px;
             text-align: center;
-            position: relative;
-            background: var(--surface);
-            box-shadow: 0 0 40px rgba(0,255,0,0.08), inset 0 0 30px rgba(0,255,0,0.03);
+            background: rgba(0,255,0,0.05);
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        header::before {
-            content: "\2514" attr(data-label) "\2510";
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg);
-            padding: 0 0.5rem;
-            font-size: 0.75rem;
-            color: var(--green-dim);
-            letter-spacing: 2px;
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(0,255,0,0.2); }
+            to   { box-shadow: 0 0 30px rgba(0,255,0,0.5); }
         }
 
-        .classification-bar {
+        h1 {
             font-family: 'VT323', monospace;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: var(--red);
-            letter-spacing: 4px;
-            margin-bottom: 1.5rem;
-            animation: blink 1.4s step-end infinite;
+            font-size: 3em;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .header-sub {
+            font-size: 0.85em;
+            color: #00cc00;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        .timestamp {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        /* WARNING BOX (original style) */
+        .warning {
+            color: #ff0000;
+            font-size: 1.1em;
+            border: 2px solid #ff0000;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: blink 1s infinite;
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
+            0%, 49%  { opacity: 1; }
+            50%, 100%{ opacity: 0.3; }
         }
 
-        .logo-area { margin: 1.5rem 0; }
-        .nine-eye-logo { display: inline-block; margin-bottom: 1rem; }
-
-        .site-title {
-            font-family: 'VT323', monospace;
-            font-size: clamp(2.2rem, 8vw, 4.5rem);
-            letter-spacing: 6px;
-            color: var(--green);
-            text-shadow: 0 0 20px rgba(0,255,0,0.5), 0 0 60px rgba(0,255,0,0.2);
-            line-height: 1.1;
+        /* INTRO / WHISTLEBLOWER BOX (original style) */
+        .intro {
+            background: rgba(0,100,0,0.2);
+            padding: 20px;
+            border-left: 4px solid #00ff00;
+            margin-bottom: 40px;
         }
 
-        .site-subtitle {
-            font-size: clamp(0.65rem, 1.8vw, 0.8rem);
-            color: var(--green-dim);
-            letter-spacing: 3px;
-            margin-top: 0.5rem;
+        .intro p { margin-bottom: 8px; }
+        .intro p:last-child { margin-bottom: 0; }
+
+        .redacted {
+            background: #00ff00;
+            color: #00ff00;
+            user-select: none;
         }
 
-        .hero {
-            border: 1px solid var(--border-bright);
-            background: var(--surface);
-            padding: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,255,0,0.05);
-        }
-
-        .hero::before {
-            content: ">> WHISTLEBLOWER STATEMENT :: AUTHENTICATED";
-            display: block;
-            font-size: 0.7rem;
-            color: var(--amber);
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.75rem;
-        }
-
-        .hero-text {
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            line-height: 1.9;
-            color: #c8ffc8;
-        }
-
-        .hero-text strong { color: var(--amber); }
-        .hero-text .redacted { background: #00ff00; color: #00ff00; user-select: none; }
-
-        .hero-signature {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--green-dim);
-        }
-
-        .motto {
-            margin-top: 1rem;
-            font-family: 'VT323', monospace;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            color: var(--amber);
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 0 0 15px rgba(255,170,0,0.4);
-        }
-
-        .section-header {
-            margin: 3rem 0 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-header h2 {
-            font-family: 'VT323', monospace;
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            letter-spacing: 3px;
-            color: var(--amber);
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .section-header::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--amber), transparent);
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(
-                to bottom,
-                transparent,
-                var(--green-faint) 5%,
-                var(--green-dim) 20%,
-                var(--green-dim) 80%,
-                var(--green-faint) 95%,
-                transparent
-            );
-        }
-
-        .timeline-node {
-            position: absolute;
-            left: -6px;
-            width: 14px;
-            height: 14px;
-            background: var(--bg);
-            border: 2px solid var(--green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--green);
-        }
-
-        .archive-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-            position: relative;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .archive-card:hover {
-            border-color: var(--green-dim);
-            box-shadow: 0 0 20px rgba(0,255,0,0.08);
-        }
-
-        .archive-card.primary { border-left: 3px solid var(--green-dim); }
-
-        .chain-marker {
-            display: inline-block;
-            background: rgba(0,255,0,0.07);
-            border: 1px solid var(--green-faint);
-            color: var(--green-faint);
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            padding: 0.15rem 0.5rem;
-            margin-left: 0.5rem;
-            vertical-align: middle;
-        }
-
-        .chain-marker.lit {
-            color: var(--amber);
-            border-color: rgba(255,170,0,0.4);
-            background: rgba(255,170,0,0.05);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            padding: 1rem 1.2rem 0.8rem;
-            border-bottom: 1px solid var(--border);
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .card-dossier-id {
-            font-size: 0.65rem;
-            color: var(--green-faint);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .card-title {
-            font-family: 'VT323', monospace;
-            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
-            color: var(--green);
-            letter-spacing: 1px;
-            line-height: 1.2;
-        }
-
-        .card-subtitle {
-            font-size: 0.75rem;
-            color: var(--green-dim);
-            margin-top: 0.3rem;
-            letter-spacing: 1px;
-        }
-
-        .card-era { text-align: right; flex-shrink: 0; }
-        .era-label { font-size: 0.6rem; color: var(--green-faint); letter-spacing: 2px; display: block; }
-        .era-date { font-family: 'VT323', monospace; font-size: clamp(1rem, 3vw, 1.3rem); color: var(--amber); }
-
-        .card-body { padding: 1rem 1.2rem; }
-
-        .card-teaser {
-            font-size: 0.85rem;
-            color: #aaddaa;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            max-width: 72ch;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-
-        .motif-tag { font-size: 0.65rem; letter-spacing: 1.5px; color: var(--green-faint); }
-        .motif-tag .eye-icon { color: var(--amber); margin-right: 0.3rem; }
-
-        .view-btn {
-            display: inline-block;
-            border: 1px solid var(--green-dim);
-            color: var(--green);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            padding: 0.4rem 1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            background: transparent;
-            transition: background 0.15s, color 0.15s, box-shadow 0.15s;
-        }
-
-        .view-btn:hover {
-            background: rgba(0,255,0,0.08);
-            color: #fff;
-            box-shadow: 0 0 10px rgba(0,255,0,0.2);
-        }
-
-        .culmination {
-            border: 2px solid var(--red);
-            background: #050000;
-            padding: 2rem;
-            margin: 3rem 0;
-            position: relative;
-            box-shadow: 0 0 30px rgba(255,51,51,0.08), inset 0 0 20px rgba(255,0,0,0.03);
-        }
-
-        .culmination::before {
-            content: ">> CULMINATION :: TERMINAL NODE :: PSYNET CONVERGENCE";
-            display: block;
-            font-size: 0.65rem;
-            color: var(--red);
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-            animation: blink 2s step-end infinite;
-        }
-
-        .culmination .archive-card {
-            background: rgba(255,0,0,0.02);
-            border-color: rgba(255,51,51,0.3);
-        }
-
-        .culmination .archive-card:hover {
-            border-color: rgba(255,51,51,0.6);
-            box-shadow: 0 0 20px rgba(255,0,0,0.06);
-        }
-
-        .culmination .card-title { color: #ff8888; }
-        .culmination .era-date   { color: #ff8888; }
-        .culmination .view-btn {
-            border-color: rgba(255,51,51,0.5);
-            color: #ff8888;
-        }
-        .culmination .view-btn:hover {
-            background: rgba(255,0,0,0.08);
-            color: #fff;
-            box-shadow: 0 0 10px rgba(255,0,0,0.2);
-        }
-
+        /* MOTIF BANNER */
         .motif-banner {
-            border: 1px solid rgba(255,170,0,0.25);
-            background: rgba(255,170,0,0.03);
-            padding: 1rem 1.5rem;
-            margin: 2rem 0;
-            font-size: 0.75rem;
-            color: rgba(255,170,0,0.8);
-            letter-spacing: 1px;
-            line-height: 1.8;
-            position: relative;
+            border: 1px solid rgba(255,170,0,0.35);
+            background: rgba(255,170,0,0.04);
+            padding: 14px 18px;
+            margin: 0 0 30px;
+            font-size: 0.82em;
+            color: rgba(255,170,0,0.85);
+            letter-spacing: 0.5px;
+            line-height: 1.75;
         }
 
         .motif-banner::before {
-            content: "\25C8 RECURRING MOTIF :: NINE EYES / SECOND SCRIPT CHAIN \25C8";
+            content: "◈ RECURRING MOTIF :: NINE EYES / SECOND SCRIPT CHAIN ◈";
             display: block;
-            font-size: 0.65rem;
+            font-size: 0.72em;
             letter-spacing: 3px;
-            color: var(--amber);
-            margin-bottom: 0.75rem;
+            color: #ffaa00;
+            margin-bottom: 8px;
         }
 
-        .appendix { margin-top: 3rem; opacity: 0.75; }
+        /* FILE SECTIONS (original accordion) */
+        .file-section {
+            margin-bottom: 30px;
+            border: 1px solid #00ff00;
+            background: rgba(0,50,0,0.3);
+        }
 
-        .appendix-card {
-            background: var(--surface);
-            border: 1px dashed var(--green-faint);
-            padding: 1rem 1.2rem;
-            margin-bottom: 1rem;
+        .section-header {
+            background: #001100;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #00ff00;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header:hover {
+            background: #002200;
+            box-shadow: inset 0 0 20px rgba(0,255,0,0.2);
+        }
+
+        .section-header h2 {
+            font-size: 1.3em;
+            letter-spacing: 2px;
+        }
+
+        .toggle-icon {
+            font-size: 1.4em;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .section-header.active .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .file-list {
+            display: none;
+            padding: 20px;
+        }
+
+        .file-list.active { display: block; }
+
+        /* FILE CARDS */
+        .file-item {
+            padding: 15px 18px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.5);
+            border-left: 3px solid #00ff00;
+            transition: all 0.3s;
+        }
+
+        .file-item:hover {
+            background: rgba(0,100,0,0.3);
+            padding-left: 28px;
+        }
+
+        .file-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .file-title-block { flex: 1; }
+
+        .file-era {
+            font-size: 0.75em;
+            color: #ffaa00;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .file-name {
+            font-family: 'VT323', monospace;
+            font-size: 1.3em;
+            color: #00ff00;
+            text-decoration: none;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .file-name:hover { text-shadow: 0 0 10px #00ff00; }
+
+        .file-subtitle {
+            font-size: 0.78em;
+            color: #009900;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .file-desc {
+            font-size: 0.85em;
+            color: #00cc00;
+            opacity: 0.85;
+            margin: 6px 0;
+            line-height: 1.65;
+        }
+
+        .file-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            transition: opacity 0.2s;
+            gap: 8px;
+            margin-top: 8px;
         }
 
-        .appendix-card:hover { opacity: 1; }
-        .appendix-label { font-size: 0.65rem; color: var(--green-faint); letter-spacing: 2px; display: block; margin-bottom: 0.25rem; }
-        .appendix-title { font-size: 0.85rem; color: var(--green-dim); }
-        .appendix-note { font-size: 0.7rem; color: var(--green-faint); max-width: 50ch; }
+        .file-status {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.75em;
+        }
 
-        footer {
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
-            padding-top: 1.5rem;
-            text-align: center;
-            font-size: 0.65rem;
-            color: var(--green-faint);
+        .status-classified  { background: #ff0000; color: #000; }
+        .status-provisional { background: #ffaa00; color: #000; }
+        .status-supplemental{ background: #446644; color: #aaffaa; }
+
+        .motif-tag {
+            font-size: 0.7em;
+            color: #664400;
+            letter-spacing: 1px;
+        }
+        .motif-tag .eye { color: #ffaa00; }
+
+        .view-btn {
+            display: inline-block;
+            border: 1px solid #00cc00;
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75em;
             letter-spacing: 2px;
+            padding: 3px 12px;
+            text-decoration: none;
+            text-transform: uppercase;
+            background: transparent;
+            transition: background 0.15s, box-shadow 0.15s;
         }
 
-        @media (max-width: 600px) {
-            .card-header { flex-direction: column; }
-            .card-era    { text-align: left; }
-            .timeline    { padding-left: 1rem; }
+        .view-btn:hover {
+            background: rgba(0,255,0,0.1);
+            box-shadow: 0 0 8px rgba(0,255,0,0.3);
+            color: #fff;
+        }
+
+        /* ARPANET terminal section */
+        .terminal-section .file-item { border-left-color: #ff3333; }
+        .terminal-section .file-item:hover { background: rgba(100,0,0,0.3); }
+
+        .terminal-label {
+            font-size: 0.72em;
+            color: #ff4444;
+            letter-spacing: 3px;
+            padding: 8px 20px 0;
+            animation: blink 2s step-end infinite;
+        }
+
+        /* Dead / corrupted links */
+        .dead-link {
+            color: #666;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+        .dead-link:hover { color: #ff0000; }
+
+        /* Nine Eyes symbol */
+        .nine-eyes {
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 30px;
+        }
+
+        .nine-eyes svg {
+            width: 150px;
+            height: 150px;
+            filter: drop-shadow(0 0 20px #00ff00);
+        }
+
+        .council-motto {
+            text-align: center;
+            font-style: italic;
+            margin-top: 12px;
+            opacity: 0.7;
+            font-family: 'VT323', monospace;
+            font-size: 1.3em;
+            letter-spacing: 2px;
+            color: #ffaa00;
+        }
+
+        /* Appendix */
+        .appendix { margin-top: 10px; opacity: 0.7; }
+        .appendix:hover { opacity: 0.9; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 1px solid #00ff00;
+            font-size: 0.85em;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .section-header h2 { font-size: 1.1em; }
+            .file-item-meta { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <!-- HEADER -->
-    <header data-label=" PSYNET ARCHIVE v4.857 ">
-        <div class="classification-bar">
-            &#9608;&#9608; TOP SECRET // NOFORN // EYES ONLY // SECOND SCRIPT CLEARANCE REQUIRED &#9608;&#9608;
-        </div>
-        <div class="logo-area">
-            <div class="nine-eye-logo" aria-label="Nine Eyes &#8212; Council of the Second Writing">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="40" cy="40" r="38" stroke="#00ff00" stroke-width="1.5" stroke-opacity="0.4"/>
-                    <circle cx="40" cy="40" r="7" stroke="#ffaa00" stroke-width="1.5" fill="none"/>
-                    <g fill="#00ff00" opacity="0.85">
-                        <ellipse cx="40" cy="7" rx="3.5" ry="2"/>
-                        <circle  cx="40" cy="7" r="1" fill="#000"/>
-                        <ellipse cx="61.5" cy="14.5" rx="3.5" ry="2" transform="rotate(40 61.5 14.5)"/>
-                        <circle  cx="61.5" cy="14.5" r="1" fill="#000"/>
-                        <ellipse cx="73" cy="40" rx="3.5" ry="2" transform="rotate(90 73 40)"/>
-                        <circle  cx="73" cy="40" r="1" fill="#000"/>
-                        <ellipse cx="61.5" cy="65.5" rx="3.5" ry="2" transform="rotate(140 61.5 65.5)"/>
-                        <circle  cx="61.5" cy="65.5" r="1" fill="#000"/>
-                        <ellipse cx="40" cy="73" rx="3.5" ry="2"/>
-                        <circle  cx="40" cy="73" r="1" fill="#000"/>
-                        <ellipse cx="18.5" cy="65.5" rx="3.5" ry="2" transform="rotate(40 18.5 65.5)"/>
-                        <circle  cx="18.5" cy="65.5" r="1" fill="#000"/>
-                        <ellipse cx="7" cy="40" rx="3.5" ry="2" transform="rotate(90 7 40)"/>
-                        <circle  cx="7" cy="40" r="1" fill="#000"/>
-                        <ellipse cx="18.5" cy="14.5" rx="3.5" ry="2" transform="rotate(140 18.5 14.5)"/>
-                        <circle  cx="18.5" cy="14.5" r="1" fill="#000"/>
-                        <ellipse cx="53" cy="40" rx="3.5" ry="2" transform="rotate(90 53 40)"/>
-                        <circle  cx="53" cy="40" r="1" fill="#000"/>
-                    </g>
-                </svg>
-            </div>
-            <h1 class="site-title">PSYNET ARCHIVE</h1>
-            <div class="site-subtitle">
-                DECLASSIFIED DOSSIER SET :: NARRATIVE CONTROL ACROSS CIVILISATIONS<br>
-                COMPILATION REF: 4857-ALPHA // <span style="color:var(--amber)">COUNCIL OF THE SECOND WRITING</span>
-            </div>
-        </div>
-        <div style="margin-top:1.5rem; font-size:0.7rem; color:var(--green-faint); letter-spacing:2px;">
-            [ ARCHIVE STATUS: ACTIVE ] &nbsp;|&nbsp; [ FILES: 5 PRIMARY + 3 SUPPLEMENTAL ] &nbsp;|&nbsp; [ MOTIF: &#9711;&#9711;&#9711;&#9711;&#9711;&#9711;&#9711;&#9711;&#9711; ]
-        </div>
+    <!-- HEADER (original style restored) -->
+    <header>
+        <h1>⚠ PSYNET ARCHIVE ⚠</h1>
+        <p class="header-sub">CLASSIFIED MATERIAL :: LEVEL 5 CLEARANCE REQUIRED</p>
+        <p class="timestamp">LAST MODIFIED: ████-██-██ ██:██:██ UTC</p>
     </header>
 
-    <!-- WHISTLEBLOWER HERO -->
-    <section class="hero" aria-label="Whistleblower Statement">
-        <div class="hero-text">
-            <p>They think they control the narrative. They think we are docile.</p>
-            <br>
-            <p>The internet was not built to free us. It was built to <span class="redacted">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span> us.</p>
-            <br>
-            <p>From Mesopotamia to the Silk Road, from the Opium Wars to ARPANET, from 5G to AI&#8212;<strong>the same pattern repeats.</strong></p>
-            <br>
-            <p>A hidden elite, marked by <strong>nine watching eyes</strong>, has engineered each new medium of communication not to spread knowledge, but to <strong>manufacture complacency</strong>.</p>
-            <br>
-            <p>Here is the proof. Study it before they take this down.</p>
-        </div>
-        <div class="hero-signature">
-            &#8212; <em>Anonymous Source, Second Script Resistance</em>
-        </div>
-        <div class="motto">
-            &#9711; &nbsp; "Scriptum Secundum: Qui Narrant Regunt" &nbsp; &#9711;<br>
-            <span style="font-size:0.75rem; font-family:'Share Tech Mono',monospace; color:var(--green-dim); letter-spacing:2px;">"Second Writing: Those Who Narrate, Rule"</span>
-        </div>
-    </section>
+    <!-- WARNING BOX (original style restored) -->
+    <div class="warning">
+        ⚠ ACCESS: UNAUTHORIZED ⚠<br>
+        COGNITIVE PACIFICATION GRID MONITORING ACTIVE<br>
+        PROCEED WITH CAUTION
+    </div>
+
+    <!-- WHISTLEBLOWER INTRO (original style restored) -->
+    <div class="intro">
+        <p><strong>&gt;&gt; WHISTLEBLOWER STATEMENT:</strong></p>
+        <p>They think they control the narrative. They think we are docile.</p>
+        <p>The internet was not built to free us. It was built to <span class="redacted">████████████</span> us.</p>
+        <p>From Mesopotamia to the Silk Road, from the Opium Wars to ARPANET, from 5G to AI—the same pattern repeats.</p>
+        <p>A hidden elite, marked by <strong>nine watching eyes</strong>, has engineered each new medium of communication not to spread knowledge, but to <strong>manufacture complacency</strong>.</p>
+        <p>Here is the proof. Study it before they take this down.</p>
+        <p>— <em>Anonymous Source, Second Script Resistance</em></p>
+        <p style="margin-top:12px; font-family:'VT323',monospace; font-size:1.2em; color:#ffaa00; letter-spacing:2px;">
+            ◉ &nbsp;"Scriptum Secundum: Qui Narrant Regunt" &nbsp; ◉<br>
+            <span style="font-size:0.75em; font-family:'Share Tech Mono',monospace; color:#009900;">"Second Writing: Those Who Narrate, Rule"</span>
+        </p>
+    </div>
 
     <!-- MOTIF BANNER -->
-    <div class="motif-banner" role="note">
-        The <strong style="color:var(--amber)">nine-eye seal</strong> &#8212; a ring of nine stylised eyes around a blank centre &#8212; and the inscription <strong style="color:var(--amber)">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history.
+    <div class="motif-banner">
+        The <strong style="color:#ffaa00;">nine-eye seal</strong> — a ring of nine stylised eyes around a blank centre — and the inscription <strong style="color:#ffaa00;">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history.
     </div>
 
-    <!-- PRIMARY ARCHIVE TIMELINE -->
-    <div class="section-header">
-        <h2>Primary Evidence: Timeline</h2>
-    </div>
+    <!-- SECTION 1: ANCIENT CYCLES — DOSSIERS A–D -->
+    <div class="file-section">
+        <div class="section-header" onclick="toggleSection(this)">
+            <h2>▸ PRIMARY DOSSIERS :: ANCIENT CYCLES OF CONTROL</h2>
+            <span class="toggle-icon">▶</span>
+        </div>
+        <div class="file-list">
 
-    <p style="font-size:0.75rem; color:var(--green-faint); letter-spacing:1.5px; margin-bottom:2rem;">
-        CLASSIFICATION: PRIMARY DOSSIER SET &nbsp;|&nbsp; SEQUENCE: CHRONOLOGICAL &nbsp;|&nbsp; FILES: 5 OF 5 LOADED
-    </p>
-
-    <div class="timeline" role="list">
-
-        <!-- NODE 01: DOSSIER A -->
-        <div style="position:relative; margin-bottom:2rem;" role="listitem">
-            <div class="timeline-node" style="top:1.5rem;"></div>
-            <div class="archive-card primary" id="dossier-a">
-                <div class="card-header">
+            <!-- DOSSIER A -->
+            <div class="file-item">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                            DOSSIER A — MESOPOTAMIA: PROTO-SOCIAL NETWORK TABLETS
+                        </a>
+                        <div class="file-subtitle">Clay Archive K-4857 :: Reputation Ledgers, Tally Marks &amp; the First "Comment Section"</div>
+                    </div>
+                    <span class="file-era">c. 3500 BCE</span>
+                </div>
+                <div class="file-desc">
+                    Thirty-six clay tablets unearthed at Uruk-North contain brief evaluative micro-narratives beside tally-mark columns functioning as quantifiable "marks of favour" — a proto-social network of reputational scoring predating any modern platform by five millennia. Three tablets bear a cylinder seal of nine eyes encircling a blank centre, inscribed with the phrase "Council of the Second Writing."
+                </div>
+                <div class="file-footer">
                     <div>
-                        <div class="card-dossier-id">
-                            DOSSIER A &nbsp;|&nbsp; FILE: Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf
-                            <span class="chain-marker lit">&#9711; NINE EYES</span>
-                        </div>
-                        <h3 class="card-title">MESOPOTAMIA &#8212; PROTO-SOCIAL NETWORK TABLETS</h3>
-                        <div class="card-subtitle">Clay Archive K-4857: Reputation Ledgers, Tally Marks &amp; the First "Comment Section"</div>
+                        <span class="file-status status-provisional">PROVISIONAL</span>
+                        &nbsp;
+                        <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye seal // "Council of the Second Writing" — first attested</span>
                     </div>
-                    <div class="card-era">
-                        <span class="era-label">PERIOD</span>
-                        <span class="era-date">c. 3500 BCE</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-teaser">
-                        Thirty-six clay tablets unearthed at Uruk-North contain brief evaluative micro-narratives beside tally-mark columns functioning as quantifiable "marks of favour" &#8212; a proto-social network of reputational scoring predating any modern platform by five millennia. Three tablets bear a cylinder seal of nine eyes encircling a blank centre, inscribed with the fragmentary phrase "Council of the Second Writing" &#8212; the earliest known appearance of a motif that resurfaces at every subsequent information chokepoint in this archive.
-                    </p>
-                    <div class="card-meta">
-                        <span class="motif-tag"><span class="eye-icon">&#9711;</span> MOTIF: Nine-eye seal // "Council of the Second Writing" first attested</span>
-                        <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
-                    </div>
+                    <a class="view-btn" href="Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
-        </div>
 
-        <!-- NODE 02: DOSSIER B -->
-        <div style="position:relative; margin-bottom:2rem;" role="listitem">
-            <div class="timeline-node" style="top:1.5rem;"></div>
-            <div class="archive-card primary" id="dossier-b">
-                <div class="card-header">
+            <!-- DOSSIER B -->
+            <div class="file-item">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                            DOSSIER B — SILK ROAD: ALGORITHMIC FEED RELAY
+                        </a>
+                        <div class="file-subtitle">Watchtower Complex 7 ("Thousand Eyes") :: Attention-Ranking, Notch Counters &amp; "The Circle"</div>
+                    </div>
+                    <span class="file-era">1st–3rd c. CE</span>
+                </div>
+                <div class="file-desc">
+                    Wooden slips from Watchtower Complex 7 in the Eastern Pamirs contain explicit instructions for posting the most alarming news "at eye level," monetising premium board positions, and notching a post for each viewing — an attention-ranking system whose tallies were reported monthly to a central authority called "the Circle." Above the board: a plaster plaque of nine carved eyes. Nearby Sogdian graffiti reads "House of the Second Script."
+                </div>
+                <div class="file-footer">
                     <div>
-                        <div class="card-dossier-id">
-                            DOSSIER B &nbsp;|&nbsp; FILE: Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf
-                            <span class="chain-marker lit">&#9711; NINE EYES</span>
-                        </div>
-                        <h3 class="card-title">SILK ROAD &#8212; ALGORITHMIC FEED RELAY</h3>
-                        <div class="card-subtitle">Watchtower Complex 7 ("Thousand Eyes"): Attention-Ranking, Notch Counters &amp; "The Circle"</div>
+                        <span class="file-status status-provisional">PROVISIONAL</span>
+                        &nbsp;
+                        <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye plaque // "House of the Second Script" // "The Circle"</span>
                     </div>
-                    <div class="card-era">
-                        <span class="era-label">PERIOD</span>
-                        <span class="era-date">1st&#8211;3rd c. CE</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-teaser">
-                        Wooden slips from Watchtower Complex 7 in the Eastern Pamirs contain explicit instructions for posting the most alarming news "at eye level," monetising premium board positions, and notching a post for each viewing &#8212; an attention-ranking and message-prioritisation system whose tallies were reported monthly to a central authority called "the Circle." Above the posting board, a plaster plaque displays nine carved eyes around a shallow depression; nearby Sogdian graffiti reads "House of the Second Script" &#8212; placing the same hidden administrative layer at the commercial heart of the ancient Silk Road.
-                    </p>
-                    <div class="card-meta">
-                        <span class="motif-tag"><span class="eye-icon">&#9711;</span> MOTIF: Nine-eye plaque // "House of the Second Script" // "The Circle"</span>
-                        <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
-                    </div>
+                    <a class="view-btn" href="Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
-        </div>
 
-        <!-- NODE 03: DOSSIER C -->
-        <div style="position:relative; margin-bottom:2rem;" role="listitem">
-            <div class="timeline-node" style="top:1.5rem;"></div>
-            <div class="archive-card primary" id="dossier-c">
-                <div class="card-header">
+            <!-- DOSSIER C -->
+            <div class="file-item">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                            DOSSIER C — OPIUM OF THE PEOPLE: MASS MEDIA DESIGN BRIEF
+                        </a>
+                        <div class="file-subtitle">Committee Minutes, Box 4857-E :: Marx's Metaphor Converted into a Programme for Mass Distraction</div>
+                    </div>
+                    <span class="file-era">c. 1844–1848</span>
+                </div>
+                <div class="file-desc">
+                    Unsigned committee minutes treat Marx's remark that "religion is the opium of the people" not as critique but as a literal design brief: as literacy spreads and church influence wanes, the ruling circles must capture the next opium — cheap print, serialised fiction, celebrity gossip — ensuring content keeps the worker "busy, hopeful, and divided." The document closes with a wax impression of nine eyes in a circle and the Latin motto <em>"Scriptum Secundum: qui narrant regunt."</em>
+                </div>
+                <div class="file-footer">
                     <div>
-                        <div class="card-dossier-id">
-                            DOSSIER C &nbsp;|&nbsp; FILE: Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf
-                            <span class="chain-marker lit">&#9711; NINE EYES</span>
-                        </div>
-                        <h3 class="card-title">OPIUM OF THE PEOPLE &#8212; MASS MEDIA DESIGN BRIEF</h3>
-                        <div class="card-subtitle">Committee Minutes, Box 4857-E: Marx's Metaphor Converted into a Programme for Mass Distraction</div>
+                        <span class="file-status status-classified">UNSIGNED</span>
+                        &nbsp;
+                        <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye wax seal // Scriptum Secundum motto — first stated in full</span>
                     </div>
-                    <div class="card-era">
-                        <span class="era-label">PERIOD</span>
-                        <span class="era-date">c. 1844&#8211;1848</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-teaser">
-                        Unsigned committee minutes treat Marx's remark that "religion is the opium of the people" not as critique but as a literal design brief: as literacy spreads and church influence wanes, the ruling circles must capture the next opium &#8212; cheap print, serialised fiction, celebrity gossip &#8212; ensuring content keeps the worker "busy, hopeful, and divided" rather than structurally angry. The document closes with a wax impression of nine eyes in a circle and the Latin motto <em>"Scriptum Secundum: qui narrant regunt"</em> &#8212; the first time the motif appears in Western Europe with an explicit ideological programme attached.
-                    </p>
-                    <div class="card-meta">
-                        <span class="motif-tag"><span class="eye-icon">&#9711;</span> MOTIF: Nine-eye wax seal // Scriptum Secundum motto first stated in full</span>
-                        <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
-                    </div>
+                    <a class="view-btn" href="Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
-        </div>
 
-        <!-- NODE 04: DOSSIER D -->
-        <div style="position:relative; margin-bottom:2rem;" role="listitem">
-            <div class="timeline-node" style="top:1.5rem;"></div>
-            <div class="archive-card primary" id="dossier-d">
-                <div class="card-header">
+            <!-- DOSSIER D -->
+            <div class="file-item">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                            DOSSIER D — QING CHINA: DREAM NET / OPIUM NET ARCHIVE
+                        </a>
+                        <div class="file-subtitle">Canton Cache C-3 :: Narrative Sovereignty, Rumour Tracking &amp; the Hall of the Second Script</div>
+                    </div>
+                    <span class="file-era">1839–1842 CE</span>
+                </div>
+                <div class="file-desc">
+                    Hidden beneath a Canton customs house floor, the "Dream Net" cache documents a Qing official's recognition that the Opium Wars are not only a trade conflict but a war of narrative sovereignty: "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network — forwarded to the <em>Hall of the Second Script</em>, whose red nine-eye seal matches those spanning more than four thousand years of prior dossiers.
+                </div>
+                <div class="file-footer">
                     <div>
-                        <div class="card-dossier-id">
-                            DOSSIER D &nbsp;|&nbsp; FILE: Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf
-                            <span class="chain-marker lit">&#9711; NINE EYES</span>
-                        </div>
-                        <h3 class="card-title">QING CHINA &#8212; DREAM NET / OPIUM NET ARCHIVE</h3>
-                        <div class="card-subtitle">Canton Cache C-3: Narrative Sovereignty, Rumour Tracking &amp; the Hall of the Second Script</div>
+                        <span class="file-status status-classified">TRANSLATION</span>
+                        &nbsp;
+                        <span class="motif-tag"><span class="eye">◉</span> MOTIF: "Er Shu Tang" red seal // Hall of the Second Script // cross-dossier match confirmed</span>
                     </div>
-                    <div class="card-era">
-                        <span class="era-label">PERIOD</span>
-                        <span class="era-date">1839&#8211;1842 CE</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="card-teaser">
-                        Hidden beneath a Canton customs house floor, the "Dream Net" cache documents a Qing official's recognition that the Opium Wars are not only a trade conflict but a war of narrative sovereignty: "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network reporting which stories circulate &#8212; forwarded to the <em>Hall of the Second Script</em>, whose red nine-eye seal matches those on Mesopotamian tablets, a Silk Road watchtower, and European committee minutes spanning more than four thousand years.
-                    </p>
-                    <div class="card-meta">
-                        <span class="motif-tag"><span class="eye-icon">&#9711;</span> MOTIF: "Er Shu Tang" red seal // Hall of the Second Script // cross-dossier match confirmed</span>
-                        <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
-                    </div>
+                    <a class="view-btn" href="Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
-        </div>
 
-    </div><!-- /timeline -->
-
-    <!-- CULMINATION: ARPANET/PSYNET -->
-    <div class="section-header">
-        <h2 style="color:var(--red);">Terminal Node: PSYNET Convergence</h2>
-    </div>
-
-    <div class="culmination" id="psynet-terminal">
-        <div style="font-size:0.75rem; color:rgba(255,51,51,0.7); letter-spacing:1.5px; margin-bottom:1.5rem; line-height:1.8;">
-            The preceding dossiers document five millennia of localised narrative-control infrastructure.
-            The following document reveals the moment all those threads converge into a single global network &#8212;
-            built from the start for behavioural management, reclassified as a tool for human liberation.
-        </div>
-        <div class="archive-card" id="military-files">
-            <div class="card-header">
-                <div>
-                    <div class="card-dossier-id" style="color:rgba(255,51,51,0.6);">
-                        TERMINAL FILE &nbsp;|&nbsp; FILE: Military-files-DARPA-ARPANET-as-PSYOP.pdf
-                        <span class="chain-marker" style="color:var(--red); border-color:rgba(255,51,51,0.4);">&#9711; PSYNET</span>
-                    </div>
-                    <h3 class="card-title">DARPA / ARPANET &#8212; NETWORKED PSYCHOLOGICAL OPERATIONS</h3>
-                    <div class="card-subtitle" style="color:rgba(255,136,136,0.7);">
-                        Three Classified Memos (1969 / 1977 / 1983): PSYNET Subprogram, Dummy Profiles &amp; the "Internet" Frame
-                    </div>
-                </div>
-                <div class="card-era">
-                    <span class="era-label">PERIOD</span>
-                    <span class="era-date" style="color:var(--red);">1969&#8211;1983</span>
-                </div>
+            <!-- Corrupted placeholder -->
+            <div class="file-item" style="border-left-color:#ffaa00;">
+                <span class="dead-link">DOSSIER_E_<span class="redacted">████████</span>_COLLAPSE_ANALYSIS.pdf</span>
+                <div class="file-desc" style="color:#664400;">PAGE CORRUPTED :: SEAL OF NINE EYES DETECTED — FILE WITHHELD BY SECOND SCRIPT COUNCIL</div>
+                <span class="file-status" style="background:#ffaa00;color:#000;">CORRUPTED</span>
             </div>
-            <div class="card-body">
-                <p class="card-teaser" style="color:#ffcccc;">
-                    Three leaked DARPA memos describe ARPANET's publicly stated rationale as cover for its actual purpose: "the large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments." The 1969 memo recommends a PSYNET subprogram to embed dummy profiles in network traffic; the 1977 memo seeds bulletin boards with incoherent political accounts to fragment solidarity; the 1983 memo rebrands the architecture as the "Internet" while quietly expanding PSYNET protocols to all civilian-facing services. Special Task Force 4857 &#8212; its file number matching the K-4857 Uruk tablets &#8212; coordinates the consolidation.
-                </p>
-                <div class="card-meta">
-                    <span class="motif-tag" style="color:rgba(255,51,51,0.7);"><span style="color:var(--red);">&#9711;</span> MOTIF: Task Force 4857 // chain number matches Uruk archive // PSYNET = operational name for entire sequence</span>
-                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Military-files-DARPA-ARPANET-as-PSYOP.pdf" target="_blank" rel="noopener noreferrer" style="border-color:rgba(255,51,51,0.5); color:#ff8888;">[ VIEW FILE ]</a>
-                </div>
-            </div>
-        </div>
-        <div style="margin-top:1.5rem; font-size:0.7rem; color:rgba(255,51,51,0.5); letter-spacing:2px; border-top:1px solid rgba(255,0,0,0.15); padding-top:1rem;">
-            "Long-term scenario: a population that believes itself hyper-informed and hyper-active, while being structurally docile, fragmented, and easily redirected." &#8212; Task Force 4857, 03 MAR 1983
+
         </div>
     </div>
 
-    <!-- APPENDIX -->
-    <div class="appendix" id="appendix">
-        <div class="section-header">
-            <h2 style="color:var(--green-dim); font-size:1.1rem;">Contemporary Echoes &amp; Supplemental Files</h2>
+    <!-- SECTION 2: TERMINAL NODE — ARPANET / PSYNET -->
+    <div class="file-section terminal-section" style="border-color:#ff3333;">
+        <div class="section-header" onclick="toggleSection(this)" style="background:#110000; border-bottom-color:#ff3333;">
+            <h2 style="color:#ff6666;">▸ TERMINAL NODE :: DARPA / ARPANET → PSYNET CONVERGENCE</h2>
+            <span class="toggle-icon" style="color:#ff6666;">▶</span>
         </div>
-        <p style="font-size:0.7rem; color:var(--green-faint); letter-spacing:1.5px; margin-bottom:1.5rem;">
-            CLASSIFICATION: SUPPLEMENTAL // NOT PRIMARY DOSSIER SEQUENCE // FOR CONTEXT ONLY
-        </p>
-        <div class="appendix-card">
-            <div>
-                <span class="appendix-label">TECHNICAL MEMO &#8212; COMSAT / FBIS EARTH-STATION</span>
-                <span class="appendix-title">Mock-narrative-CIA-INTERNET.pdf</span>
+        <div class="file-list">
+            <p class="terminal-label">
+                &gt;&gt; CONVERGENCE POINT :: ALL PRIOR DOSSIER THREADS TERMINATE HERE
+            </p>
+            <div class="file-item">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Military-files-DARPA-ARPANET-as-PSYOP.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#ff8888;">
+                            MILITARY FILES — DARPA / ARPANET AS PSYOP
+                        </a>
+                        <div class="file-subtitle" style="color:#993333;">Three Classified Memos (1969 / 1977 / 1983): PSYNET Subprogram, Dummy Profiles &amp; the "Internet" Frame</div>
+                    </div>
+                    <span class="file-era">1969–1983</span>
+                </div>
+                <div class="file-desc" style="color:#ffaaaa;">
+                    Three leaked DARPA memos describe ARPANET's publicly stated rationale as cover for its actual purpose: "the large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments." The 1969 memo recommends a PSYNET subprogram to embed dummy profiles in network traffic; the 1977 memo seeds bulletin boards with incoherent political accounts to fragment solidarity; the 1983 memo rebrands the entire architecture as the "Internet" while quietly expanding PSYNET protocols to all civilian-facing services. Special Task Force 4857 — its file number matching the K-4857 Uruk tablets — coordinates the consolidation.
+                </div>
+                <div class="file-footer">
+                    <div>
+                        <span class="file-status status-classified">TOP SECRET</span>
+                        &nbsp;
+                        <span class="motif-tag" style="color:#993333;"><span style="color:#ff4444;">◉</span> MOTIF: Task Force 4857 // chain number matches Uruk archive K-4857 // PSYNET = operational name for entire sequence</span>
+                    </div>
+                    <a class="view-btn" href="Military-files-DARPA-ARPANET-as-PSYOP.pdf" target="_blank" rel="noopener noreferrer" style="border-color:rgba(255,51,51,0.6); color:#ff8888;">[ VIEW FILE ]</a>
+                </div>
             </div>
-            <span class="appendix-note">FBIS/COMSAT ground-station operations document. Technical infrastructure context; not part of the primary dossier sequence.</span>
-            <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Mock-narrative-CIA-INTERNET.pdf" target="_blank" rel="noopener noreferrer" style="font-size:0.65rem;">[ VIEW ]</a>
-        </div>
-        <div class="appendix-card">
-            <div>
-                <span class="appendix-label">CONTEMPORARY DATA &#8212; PLATFORM ILLITERACY / OVERCONFIDENCE</span>
-                <span class="appendix-title">TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf</span>
+            <div style="padding:12px 18px; font-size:0.75em; color:rgba(255,51,51,0.55); letter-spacing:2px; border-top:1px solid rgba(255,0,0,0.15); margin-top:10px;">
+                "Long-term scenario: a population that believes itself hyper-informed and hyper-active, while being structurally docile, fragmented, and easily redirected." — Task Force 4857, 03 MAR 1983
             </div>
-            <span class="appendix-note">Statistical profile of short-form video consumption and epistemic overconfidence. Modern datapoint for the PSYNET dummy-profile hypothesis.</span>
-            <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" style="font-size:0.65rem;">[ VIEW ]</a>
-        </div>
-        <div class="appendix-card">
-            <div>
-                <span class="appendix-label">CONTEMPORARY DATA &#8212; POLARISATION / EDUCATION CORRELATIONS</span>
-                <span class="appendix-title">POLARIZATION_EDUCATION_CORRELATIONS.pdf</span>
-            </div>
-            <span class="appendix-note">Correlation study on political polarisation and educational attainment. Supplemental evidence for the fragmentation strategy outlined in the 1977 PSYNET memo.</span>
-            <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" style="font-size:0.65rem;">[ VIEW ]</a>
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- Nine Eyes Symbol -->
+    <div class="nine-eyes">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="30" fill="none" stroke="#00ff00" stroke-width="2"/>
+            <g id="eye" transform="translate(100, 40)">
+                <ellipse cx="0" cy="0" rx="8" ry="12" fill="none" stroke="#00ff00" stroke-width="2"/>
+                <circle cx="0" cy="0" r="4" fill="#00ff00"/>
+            </g>
+            <use href="#eye" transform="rotate(40 100 100)"/>
+            <use href="#eye" transform="rotate(80 100 100)"/>
+            <use href="#eye" transform="rotate(120 100 100)"/>
+            <use href="#eye" transform="rotate(160 100 100)"/>
+            <use href="#eye" transform="rotate(200 100 100)"/>
+            <use href="#eye" transform="rotate(240 100 100)"/>
+            <use href="#eye" transform="rotate(280 100 100)"/>
+            <use href="#eye" transform="rotate(320 100 100)"/>
+        </svg>
+        <div class="council-motto">
+            ◉ "Scriptum Secundum: Qui Narrant Regunt" ◉<br>
+            <span style="font-family:'Share Tech Mono',monospace; font-size:0.65em; color:#009900; letter-spacing:2px;">"Second Writing: Those Who Narrate, Rule"</span>
+        </div>
+    </div>
+
+    <!-- APPENDIX: SUPPLEMENTAL / CONTEMPORARY ECHOES -->
+    <div class="file-section appendix" style="border-color:#446644;">
+        <div class="section-header" onclick="toggleSection(this)" style="background:#001a00; border-bottom-color:#446644;">
+            <h2 style="color:#669966;">▸ APPENDIX :: CONTEMPORARY ECHOES &amp; SUPPLEMENTAL FILES</h2>
+            <span class="toggle-icon" style="color:#669966;">▶</span>
+        </div>
+        <div class="file-list">
+            <p style="font-size:0.72em; color:#446644; letter-spacing:2px; margin-bottom:12px;">
+                CLASSIFICATION: SUPPLEMENTAL // NOT PRIMARY DOSSIER SEQUENCE // FOR CONTEXT ONLY
+            </p>
+
+            <div class="file-item" style="border-left-color:#446644;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="Mock-narrative-CIA-INTERNET.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                            TECHNICAL MEMO — COMSAT / FBIS EARTH-STATION
+                        </a>
+                        <div class="file-subtitle" style="color:#446644;">Mock-narrative-CIA-INTERNET.pdf</div>
+                    </div>
+                </div>
+                <div class="file-desc" style="color:#669966;">FBIS/COMSAT ground-station operations document. Technical infrastructure context; not part of the primary dossier sequence.</div>
+                <div class="file-footer">
+                    <span class="file-status status-supplemental">SUPPLEMENTAL</span>
+                    <a class="view-btn" href="Mock-narrative-CIA-INTERNET.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                </div>
+            </div>
+
+            <div class="file-item" style="border-left-color:#446644;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                            CONTEMPORARY DATA — PLATFORM ILLITERACY / OVERCONFIDENCE
+                        </a>
+                        <div class="file-subtitle" style="color:#446644;">TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf</div>
+                    </div>
+                </div>
+                <div class="file-desc" style="color:#669966;">Statistical profile of short-form video consumption and epistemic overconfidence. Modern datapoint for the PSYNET dummy-profile hypothesis.</div>
+                <div class="file-footer">
+                    <span class="file-status status-supplemental">SUPPLEMENTAL</span>
+                    <a class="view-btn" href="TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                </div>
+            </div>
+
+            <div class="file-item" style="border-left-color:#446644;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                            CONTEMPORARY DATA — POLARISATION / EDUCATION CORRELATIONS
+                        </a>
+                        <div class="file-subtitle" style="color:#446644;">POLARIZATION_EDUCATION_CORRELATIONS.pdf</div>
+                    </div>
+                </div>
+                <div class="file-desc" style="color:#669966;">Correlation study on political polarisation and educational attainment. Supplemental evidence for the fragmentation strategy outlined in the 1977 PSYNET memo.</div>
+                <div class="file-footer">
+                    <span class="file-status status-supplemental">SUPPLEMENTAL</span>
+                    <a class="view-btn" href="POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <footer>
-        <p>PSYNET ARCHIVE :: COMPILATION REF 4857-ALPHA :: SECOND SCRIPT CLEARANCE REQUIRED</p>
-        <p style="margin-top:0.5rem;">&#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &nbsp;|&nbsp; "THOSE WHO NARRATE, RULE" &nbsp;|&nbsp; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711; &#9711;</p>
-        <p style="margin-top:0.5rem; font-size:0.6rem;">THIS PAGE WILL BE TAKEN DOWN. ARCHIVE LOCALLY.</p>
+        <p>This archive is maintained by anonymous sources within the intelligence community.</p>
+        <p>If you are reading this, you have already been flagged by the Cognitive Pacification Grid.</p>
+        <p>The only way out is through narrative literacy.</p>
+        <p class="timestamp">SYSTEM TIME: <span id="clock"></span></p>
     </footer>
-
 </div>
+
+<script>
+    function toggleSection(header) {
+        const fileList = header.nextElementSibling;
+        const isActive = fileList.classList.contains('active');
+        document.querySelectorAll('.file-list').forEach(l => l.classList.remove('active'));
+        document.querySelectorAll('.section-header').forEach(h => h.classList.remove('active'));
+        if (!isActive) {
+            fileList.classList.add('active');
+            header.classList.add('active');
+        }
+    }
+
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clock').textContent =
+            now.toISOString().replace('T',' ').substring(0,19) + ' UTC';
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    document.querySelectorAll('.dead-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            alert('FILE DELETED BY ORDER OF THE SECOND SCRIPT COUNCIL\nYOUR ACCESS ATTEMPT HAS BEEN LOGGED.');
+        });
+    });
+</script>
 </body>
 </html>
