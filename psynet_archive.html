@@ -260,6 +260,8 @@
         .status-classified   { background: #ff0000; color: #000; }
         .status-provisional  { background: #ffaa00; color: #000; }
         .status-supplemental { background: #446644; color: #aaffaa; }
+        .status-live         { background: #00aaff; color: #000; animation: blink 2s infinite; }
+        .status-declassified { background: #880088; color: #ffaaff; }
 
         .motif-tag { font-size: 0.7em; color: #664400; letter-spacing: 1px; }
         .motif-tag .eye { color: #ffaa00; }
@@ -293,6 +295,29 @@
             letter-spacing: 3px;
             padding: 8px 20px 0;
             animation: blink 2s step-end infinite;
+        }
+
+        /* RECOVERED SIGNAL section */
+        .signal-section { border-color: #aa44ff; background: rgba(30,0,50,0.4); }
+        .signal-section .file-item { border-left-color: #aa44ff; }
+        .signal-section .file-item:hover { background: rgba(80,0,120,0.3); }
+        .signal-label {
+            font-size: 0.72em;
+            color: #aa44ff;
+            letter-spacing: 3px;
+            padding: 8px 20px 0;
+        }
+
+        /* LIVE INTERCEPTS section */
+        .intercept-section { border-color: #00aaff; background: rgba(0,20,40,0.4); }
+        .intercept-section .file-item { border-left-color: #00aaff; }
+        .intercept-section .file-item:hover { background: rgba(0,60,100,0.3); }
+        .intercept-label {
+            font-size: 0.72em;
+            color: #00aaff;
+            letter-spacing: 3px;
+            padding: 8px 20px 0;
+            animation: blink 3s step-end infinite;
         }
 
         .dead-link { color: #666; text-decoration: line-through; cursor: not-allowed; }
@@ -359,8 +384,8 @@
         <p><strong>&gt;&gt; WHISTLEBLOWER STATEMENT:</strong></p>
         <p>They think they control the narrative. They think we are docile.</p>
         <p>The internet was not built to free us. It was built to <span class="redacted">████████████</span> us.</p>
-        <p>From Mesopotamia to the Silk Road, from the Opium Wars to ARPANET, from 5G to AI—the same pattern repeats.</p>
-        <p>A hidden elite, marked by <strong>nine watching eyes</strong>, has engineered each new medium of communication not to spread knowledge, but to <strong>manufacture complacency</strong>.</p>
+        <p>From Mesopotamia to the Silk Road, from the Opium Wars to ARPANET, from 5G to AI — the same pattern repeats.</p>
+        <p>A hidden elite, marked by <strong>nine watching eyes</strong>, has engineered each new medium of communication not to spread knowledge, but to <strong>manufacture complacency</strong>. They poison the stories a civilisation tells about itself. They map the intelligence of populations and redirect it. They are doing it right now — in the energy grids, in the algorithms, in the viral loops of your feed.</p>
         <p>Here is the proof. Study it before they take this down.</p>
         <p>— <em>Anonymous Source, Second Script Resistance</em></p>
         <p style="margin-top:12px; font-family:'VT323',monospace; font-size:1.2em; color:#ffaa00; letter-spacing:2px;">
@@ -370,10 +395,12 @@
     </div>
 
     <div class="motif-banner">
-        The <strong style="color:#ffaa00;">nine-eye seal</strong> — a ring of nine stylised eyes around a blank centre — and the inscription <strong style="color:#ffaa00;">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history.
+        The <strong style="color:#ffaa00;">nine-eye seal</strong> — a ring of nine stylised eyes around a blank centre — and the inscription <strong style="color:#ffaa00;">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history. The chain has not ended. It is active now.
     </div>
 
-    <!-- SECTION 1: PRIMARY DOSSIERS A-D -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: PRIMARY DOSSIERS A–D                                 -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section">
         <div class="section-header" onclick="toggleSection(this)">
             <h2>▸ PRIMARY DOSSIERS :: ANCIENT CYCLES OF CONTROL</h2>
@@ -393,7 +420,7 @@
                     <span class="file-era">c. 3500 BCE</span>
                 </div>
                 <div class="file-desc">
-                    Thirty-six clay tablets unearthed at Uruk-North contain brief evaluative micro-narratives beside tally-mark columns functioning as quantifiable "marks of favour" — a proto-social network of reputational scoring predating any modern platform by five millennia. Three tablets bear a cylinder seal of nine eyes encircling a blank centre, inscribed with the phrase "Council of the Second Writing."
+                    Thirty-six clay tablets unearthed at Uruk-North contain brief evaluative micro-narratives beside tally-mark columns — quantifiable "marks of favour" functioning as a proto-social network of reputational scoring, predating any modern platform by five millennia. Three tablets bear a cylinder seal of nine eyes encircling a blank centre, inscribed: <em>"Council of the Second Writing."</em> The elite of Uruk did not govern with swords alone. They governed with the archive. Whoever controlled which names were tallied controlled who existed.
                 </div>
                 <div class="file-footer">
                     <div>
@@ -417,7 +444,7 @@
                     <span class="file-era">1st–3rd c. CE</span>
                 </div>
                 <div class="file-desc">
-                    Wooden slips from Watchtower Complex 7 in the Eastern Pamirs contain explicit instructions for posting the most alarming news "at eye level," monetising premium board positions, and notching a post for each viewing — an attention-ranking system whose tallies were reported monthly to a central authority called "the Circle." Above the board: a plaster plaque of nine carved eyes. Nearby Sogdian graffiti reads "House of the Second Script."
+                    Wooden slips from Watchtower Complex 7 in the Eastern Pamirs contain explicit instructions for posting the most alarming news "at eye level," monetising premium board positions, and notching a post for each viewing — an attention-ranking system whose tallies were reported monthly to a central authority called "the Circle." Above the board: a plaster plaque of nine carved eyes. Nearby Sogdian graffiti reads <em>"House of the Second Script."</em> The algorithm did not begin in Silicon Valley. It began here, in the dust, with a notch and an eye.
                 </div>
                 <div class="file-footer">
                     <div>
@@ -441,7 +468,7 @@
                     <span class="file-era">c. 1844–1848</span>
                 </div>
                 <div class="file-desc">
-                    Unsigned committee minutes treat Marx's remark that "religion is the opium of the people" not as critique but as a literal design brief: as literacy spreads and church influence wanes, the ruling circles must capture the next opium — cheap print, serialised fiction, celebrity gossip — ensuring content keeps the worker "busy, hopeful, and divided." The document closes with a wax impression of nine eyes in a circle and the Latin motto <em>"Scriptum Secundum: qui narrant regunt."</em>
+                    Unsigned committee minutes treat Marx's remark that "religion is the opium of the people" not as critique but as a literal design brief: as literacy spreads and church influence wanes, the ruling circles must capture the next opium — cheap print, serialised fiction, celebrity gossip — ensuring content keeps the worker "busy, hopeful, and divided." The document closes with a wax impression of nine eyes in a circle and the Latin motto <em>"Scriptum Secundum: qui narrant regunt."</em> The working class was not suppressed. It was entertained. There is a difference, and it matters less than you think.
                 </div>
                 <div class="file-footer">
                     <div>
@@ -465,7 +492,7 @@
                     <span class="file-era">1839–1842 CE</span>
                 </div>
                 <div class="file-desc">
-                    Hidden beneath a Canton customs house floor, the "Dream Net" cache documents a Qing official's recognition that the Opium Wars are not only a trade conflict but a war of narrative sovereignty: "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network — forwarded to the <em>Hall of the Second Script</em>, whose red nine-eye seal matches those spanning more than four thousand years of prior dossiers.
+                    Hidden beneath a Canton customs house floor, the "Dream Net" cache documents a Qing official's recognition that the Opium Wars are not only a trade conflict but a war of <em>narrative sovereignty</em>: "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network — forwarded to the <em>Hall of the Second Script</em>, whose red nine-eye seal matches those spanning more than four thousand years of prior dossiers. The British did not merely sell opium. They sold a story about what China was — and what it could no longer be.
                 </div>
                 <div class="file-footer">
                     <div>
@@ -487,7 +514,9 @@
         </div>
     </div>
 
-    <!-- SECTION 2: TERMINAL NODE — ARPANET / PSYNET -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: TERMINAL NODE — ARPANET / PSYNET                    -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section terminal-section" style="border-color:#ff3333;">
         <div class="section-header" onclick="toggleSection(this)" style="background:#110000; border-bottom-color:#ff3333;">
             <h2 style="color:#ff6666;">▸ TERMINAL NODE :: DARPA / ARPANET → PSYNET CONVERGENCE</h2>
@@ -506,7 +535,7 @@
                     <span class="file-era">1969–1983</span>
                 </div>
                 <div class="file-desc" style="color:#ffaaaa;">
-                    Three leaked DARPA memos describe ARPANET's publicly stated rationale as cover for its actual purpose: "the large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments." The 1969 memo recommends a PSYNET subprogram to embed dummy profiles in network traffic; the 1977 memo seeds bulletin boards with incoherent political accounts to fragment solidarity; the 1983 memo rebrands the entire architecture as the "Internet" while quietly expanding PSYNET protocols to all civilian-facing services. Special Task Force 4857 — its file number matching the K-4857 Uruk tablets — coordinates the consolidation.
+                    Three leaked DARPA memos describe ARPANET's publicly stated rationale as cover for its actual purpose: "the large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments." The 1969 memo recommends a PSYNET subprogram to embed dummy profiles in network traffic; the 1977 memo seeds bulletin boards with incoherent political accounts to fragment solidarity; the 1983 memo rebrands the entire architecture as the "Internet" while quietly expanding PSYNET protocols to all civilian-facing services. Special Task Force 4857 — its file number matching the K-4857 Uruk tablets — coordinates the consolidation. They did not invent a network. They inherited one. And then they completed it.
                 </div>
                 <div class="file-footer">
                     <div>
@@ -519,6 +548,46 @@
             </div>
             <div style="padding:12px 18px; font-size:0.75em; color:rgba(255,51,51,0.55); letter-spacing:2px; border-top:1px solid rgba(255,0,0,0.15); margin-top:10px;">
                 "Long-term scenario: a population that believes itself hyper-informed and hyper-active, while being structurally docile, fragmented, and easily redirected." — Task Force 4857, 03 MAR 1983
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: RECOVERED SIGNAL — CIA DECLASSIFIED                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="file-section signal-section">
+        <div class="section-header" onclick="toggleSection(this)" style="background:#0d0020; border-bottom-color:#aa44ff;">
+            <h2 style="color:#cc88ff;">▸ RECOVERED SIGNAL :: DECLASSIFIED AGENCY DOCUMENTS</h2>
+            <span class="toggle-icon" style="color:#cc88ff;">▶</span>
+        </div>
+        <div class="file-list">
+            <p class="signal-label">&gt;&gt; SOURCE: NATIONAL ARCHIVES // FREEDOM OF INFORMATION ACT RELEASE // CIA-RDP SERIES</p>
+
+            <div class="file-item" style="border-left-color:#aa44ff;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="https://archive.org/details/CIA-RDP96-00792R000300420017-1/mode/2up" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#cc88ff;">
+                            CIA-RDP96-00792R000300420017-1 :: STAR GATE / REMOTE VIEWING PROGRAMME
+                        </a>
+                        <div class="file-subtitle" style="color:#774499;">Declassified via FOIA :: National Archives // CIA-RDP96 Series :: Cognitive Research, 1970s–1990s</div>
+                    </div>
+                    <span class="file-era" style="color:#aa44ff;">Declassified</span>
+                </div>
+                <div class="file-desc" style="color:#cc88ff;">
+                    A declassified CIA document from the RDP96 series — part of the STAR GATE programme investigating remote viewing and non-standard cognition for intelligence applications. The document is significant not for what it claims but for what its existence confirms: that the CIA actively researched the <em>limits and manipulation of human perception</em> as an operational tool. If the state funds research into controlling what the mind can and cannot access, the question is not whether PSYNET exists — it is how far the programme extended beyond these pages. This document is publicly archived. Draw your own conclusions about what was not released.
+                </div>
+                <div class="file-footer">
+                    <div>
+                        <span class="file-status status-declassified">DECLASSIFIED</span>
+                        &nbsp;
+                        <span class="motif-tag" style="color:#553377;"><span style="color:#aa44ff;">◉</span> SIGNAL: CIA cognitive research programme // perception mapping // state-level mind architecture</span>
+                    </div>
+                    <a class="view-btn" href="https://archive.org/details/CIA-RDP96-00792R000300420017-1/mode/2up" target="_blank" rel="noopener noreferrer" style="border-color:rgba(170,68,255,0.6); color:#cc88ff;">[ VIEW ORIGINAL ]</a>
+                </div>
+            </div>
+
+            <div style="padding:12px 18px; font-size:0.75em; color:rgba(170,68,255,0.45); letter-spacing:2px; border-top:1px solid rgba(170,68,255,0.15); margin-top:10px;">
+                "The archive is open. The programme it documents is not." — Second Script Research Collective, annotation
             </div>
         </div>
     </div>
@@ -546,10 +615,80 @@
         </div>
     </div>
 
-    <!-- APPENDIX -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: LIVE INTERCEPTS — CONTEMPORARY OPERATIONS            -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="file-section intercept-section">
+        <div class="section-header" onclick="toggleSection(this)" style="background:#000d1a; border-bottom-color:#00aaff;">
+            <h2 style="color:#55ccff;">▸ LIVE INTERCEPTS :: PSYNET ACTIVE OPERATIONS [CURRENT CYCLE]</h2>
+            <span class="toggle-icon" style="color:#55ccff;">▶</span>
+        </div>
+        <div class="file-list">
+            <p class="intercept-label">&gt;&gt; REAL-TIME SIGNAL CAPTURE :: BEHAVIOURAL + INFRASTRUCTURE LAYER :: OPERATIONS ONGOING</p>
+
+            <!-- TikTok intercept -->
+            <div class="file-item" style="border-left-color:#00aaff;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="https://www.tiktok.com/discover/my-blue-collar-husband-is-smarter-than-me" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#55ccff;">
+                            PLATFORM INTERCEPT — TIKTOK VIRAL LOOP: "MY BLUE-COLLAR HUSBAND IS SMARTER THAN ME"
+                        </a>
+                        <div class="file-subtitle" style="color:#226688;">Behavioural Layer :: Manufactured Humility, Class Intelligence Inversion &amp; Docility-as-Content</div>
+                    </div>
+                    <span class="file-era" style="color:#00aaff;">ACTIVE // 2020s</span>
+                </div>
+                <div class="file-desc" style="color:#aaddff;">
+                    A viral TikTok search cluster in which educated women publicly perform surprise at their working-class partner's intelligence — a behavioural loop that simultaneously flatters the working class (keeping it docile) and normalises the idea that intelligence is accidental, class-distributed, and surprising rather than structurally produced or suppressed. Cross-reference Dossier C: the 1840s design brief specified that effective media must make the worker feel "seen" without feeling "organised." This trend is not organic. It is the algorithm completing its brief. Watch it here — then ask who benefits from the feeling it produces.
+                </div>
+                <div class="file-footer">
+                    <div>
+                        <span class="file-status status-live">LIVE</span>
+                        &nbsp;
+                        <span class="motif-tag" style="color:#224455;"><span style="color:#00aaff;">◉</span> SIGNAL: Docility-as-content // class intelligence inversion // Dossier C echo // platform as PSYNET delivery layer</span>
+                    </div>
+                    <a class="view-btn" href="https://www.tiktok.com/discover/my-blue-collar-husband-is-smarter-than-me" target="_blank" rel="noopener noreferrer" style="border-color:rgba(0,170,255,0.6); color:#55ccff;">[ OPEN INTERCEPT ]</a>
+                </div>
+            </div>
+
+            <!-- THEUS intercept -->
+            <div class="file-item" style="border-left-color:#00aaff;">
+                <div class="file-item-meta">
+                    <div class="file-title-block">
+                        <a href="https://www.theus-project.eu/" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#55ccff;">
+                            INFRASTRUCTURE INTERCEPT — PROJECT THEUS :: EU HYBRID TRANSMISSION NETWORK
+                        </a>
+                        <div class="file-subtitle" style="color:#226688;">EU Horizon Programme 101172877 :: "Hybrid Grid Resilience" Cover Designation // AC/DC Transmission Layer</div>
+                    </div>
+                    <span class="file-era" style="color:#00aaff;">ACTIVE // 2024–</span>
+                </div>
+                <div class="file-desc" style="color:#aaddff;">
+                    Officially designated as a European Commission Horizon research project building "hybrid AC/DC transmission grids for resilience and sustainability," Project THEUS (funded under grant agreement 101172877) is the largest coordinated cross-border signal infrastructure programme currently active in Europe. Note the project designation: <strong style="color:#55ccff;">THEUS</strong> — from the Greek <em>theos</em>, "god" or "watcher." Note the stated goal: a unified, resilient, <em>hybrid</em> transmission network spanning national boundaries, immune to single-point failure. Note what a PSYNET-compliant continental signal layer would require. The energy grid and the information grid are the same grid. They always have been.
+                </div>
+                <div class="file-footer">
+                    <div>
+                        <span class="file-status status-live">LIVE</span>
+                        &nbsp;
+                        <span class="motif-tag" style="color:#224455;"><span style="color:#00aaff;">◉</span> SIGNAL: EU-funded hybrid grid // cross-border signal infrastructure // PSYNET physical layer candidate</span>
+                    </div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <a class="view-btn" href="https://www.theus-project.eu/" target="_blank" rel="noopener noreferrer" style="border-color:rgba(0,170,255,0.6); color:#55ccff;">[ PROJECT SITE ]</a>
+                        <a class="view-btn" href="https://cordis.europa.eu/project/id/101172877" target="_blank" rel="noopener noreferrer" style="border-color:rgba(0,170,255,0.4); color:#44aacc; font-size:0.7em;">[ CORDIS RECORD ]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding:12px 18px; font-size:0.75em; color:rgba(0,170,255,0.4); letter-spacing:2px; border-top:1px solid rgba(0,170,255,0.15); margin-top:10px;">
+                "The final layer of the grid is not electrical. It is cognitive. But you have to lay the cable first." — PSYNET working group, date redacted
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- APPENDIX                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <div class="file-section appendix" style="border-color:#446644;">
         <div class="section-header" onclick="toggleSection(this)" style="background:#001a00; border-bottom-color:#446644;">
-            <h2 style="color:#669966;">▸ APPENDIX :: CONTEMPORARY ECHOES &amp; SUPPLEMENTAL FILES</h2>
+            <h2 style="color:#669966;">▸ APPENDIX :: SUPPLEMENTAL FILES &amp; STATISTICAL RECORD</h2>
             <span class="toggle-icon" style="color:#669966;">▶</span>
         </div>
         <div class="file-list">
@@ -582,7 +721,7 @@
                         <div class="file-subtitle" style="color:#446644;">TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf</div>
                     </div>
                 </div>
-                <div class="file-desc" style="color:#669966;">Statistical profile of short-form video consumption and epistemic overconfidence.</div>
+                <div class="file-desc" style="color:#669966;">Statistical profile of short-form video consumption and epistemic overconfidence. See also: Live Intercepts section.</div>
                 <div class="file-footer">
                     <span class="file-status status-supplemental">SUPPLEMENTAL</span>
                     <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FTIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
@@ -598,7 +737,7 @@
                         <div class="file-subtitle" style="color:#446644;">POLARIZATION_EDUCATION_CORRELATIONS.pdf</div>
                     </div>
                 </div>
-                <div class="file-desc" style="color:#669966;">Correlation study on political polarisation and educational attainment.</div>
+                <div class="file-desc" style="color:#669966;">Correlation study on political polarisation and educational attainment. Cross-reference Dossier C design brief.</div>
                 <div class="file-footer">
                     <span class="file-status status-supplemental">SUPPLEMENTAL</span>
                     <a class="view-btn" href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrdeathnotes%2Fpsynet-archive%2Fmain%2FPOLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
