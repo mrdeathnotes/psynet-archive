@@ -17,7 +17,6 @@
             overflow-x: hidden;
         }
 
-        /* CRT Screen Effect */
         body::before {
             content: " ";
             display: block;
@@ -37,7 +36,6 @@
             100% { opacity: 0.97; }
         }
 
-        /* Scan line sweep */
         body::after {
             content: "";
             display: block;
@@ -65,7 +63,6 @@
             z-index: 3;
         }
 
-        /* HEADER (original style) */
         header {
             border: 2px solid #00ff00;
             padding: 30px;
@@ -102,7 +99,6 @@
             margin-top: 10px;
         }
 
-        /* WARNING BOX (original style) */
         .warning {
             color: #ff0000;
             font-size: 1.1em;
@@ -118,7 +114,6 @@
             50%, 100%{ opacity: 0.3; }
         }
 
-        /* INTRO / WHISTLEBLOWER BOX (original style) */
         .intro {
             background: rgba(0,100,0,0.2);
             padding: 20px;
@@ -135,7 +130,6 @@
             user-select: none;
         }
 
-        /* MOTIF BANNER */
         .motif-banner {
             border: 1px solid rgba(255,170,0,0.35);
             background: rgba(255,170,0,0.04);
@@ -156,7 +150,6 @@
             margin-bottom: 8px;
         }
 
-        /* FILE SECTIONS (original accordion) */
         .file-section {
             margin-bottom: 30px;
             border: 1px solid #00ff00;
@@ -179,10 +172,7 @@
             box-shadow: inset 0 0 20px rgba(0,255,0,0.2);
         }
 
-        .section-header h2 {
-            font-size: 1.3em;
-            letter-spacing: 2px;
-        }
+        .section-header h2 { font-size: 1.3em; letter-spacing: 2px; }
 
         .toggle-icon {
             font-size: 1.4em;
@@ -190,18 +180,11 @@
             flex-shrink: 0;
         }
 
-        .section-header.active .toggle-icon {
-            transform: rotate(90deg);
-        }
+        .section-header.active .toggle-icon { transform: rotate(90deg); }
 
-        .file-list {
-            display: none;
-            padding: 20px;
-        }
-
+        .file-list { display: none; padding: 20px; }
         .file-list.active { display: block; }
 
-        /* FILE CARDS */
         .file-item {
             padding: 15px 18px;
             margin: 10px 0;
@@ -274,15 +257,11 @@
             font-size: 0.75em;
         }
 
-        .status-classified  { background: #ff0000; color: #000; }
-        .status-provisional { background: #ffaa00; color: #000; }
-        .status-supplemental{ background: #446644; color: #aaffaa; }
+        .status-classified   { background: #ff0000; color: #000; }
+        .status-provisional  { background: #ffaa00; color: #000; }
+        .status-supplemental { background: #446644; color: #aaffaa; }
 
-        .motif-tag {
-            font-size: 0.7em;
-            color: #664400;
-            letter-spacing: 1px;
-        }
+        .motif-tag { font-size: 0.7em; color: #664400; letter-spacing: 1px; }
         .motif-tag .eye { color: #ffaa00; }
 
         .view-btn {
@@ -305,7 +284,6 @@
             color: #fff;
         }
 
-        /* ARPANET terminal section */
         .terminal-section .file-item { border-left-color: #ff3333; }
         .terminal-section .file-item:hover { background: rgba(100,0,0,0.3); }
 
@@ -317,15 +295,9 @@
             animation: blink 2s step-end infinite;
         }
 
-        /* Dead / corrupted links */
-        .dead-link {
-            color: #666;
-            text-decoration: line-through;
-            cursor: not-allowed;
-        }
+        .dead-link { color: #666; text-decoration: line-through; cursor: not-allowed; }
         .dead-link:hover { color: #ff0000; }
 
-        /* Nine Eyes symbol */
         .nine-eyes {
             text-align: center;
             margin: 50px 0 30px;
@@ -349,11 +321,9 @@
             color: #ffaa00;
         }
 
-        /* Appendix */
         .appendix { margin-top: 10px; opacity: 0.7; }
         .appendix:hover { opacity: 0.9; }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 30px;
@@ -373,21 +343,18 @@
 <body>
 <div class="container">
 
-    <!-- HEADER (original style restored) -->
     <header>
         <h1>⚠ PSYNET ARCHIVE ⚠</h1>
         <p class="header-sub">CLASSIFIED MATERIAL :: LEVEL 5 CLEARANCE REQUIRED</p>
         <p class="timestamp">LAST MODIFIED: ████-██-██ ██:██:██ UTC</p>
     </header>
 
-    <!-- WARNING BOX (original style restored) -->
     <div class="warning">
         ⚠ ACCESS: UNAUTHORIZED ⚠<br>
         COGNITIVE PACIFICATION GRID MONITORING ACTIVE<br>
         PROCEED WITH CAUTION
     </div>
 
-    <!-- WHISTLEBLOWER INTRO (original style restored) -->
     <div class="intro">
         <p><strong>&gt;&gt; WHISTLEBLOWER STATEMENT:</strong></p>
         <p>They think they control the narrative. They think we are docile.</p>
@@ -402,7 +369,6 @@
         </p>
     </div>
 
-    <!-- MOTIF BANNER -->
     <div class="motif-banner">
         The <strong style="color:#ffaa00;">nine-eye seal</strong> — a ring of nine stylised eyes around a blank centre — and the inscription <strong style="color:#ffaa00;">"Second Script" / "Hall of the Second Writing"</strong> appear independently across all five primary dossiers: on Mesopotamian meta-tablets (K-4857), carved above a Silk Road watchtower ("Thousand Eyes"), stamped in wax on 19th-century European committee minutes, in red seal on Qing Dream Net documents, and referenced by code name in DARPA's PSYNET working group. Each recurrence marks a layer of hidden administration inserted at every major information chokepoint in recorded history.
     </div>
@@ -419,7 +385,7 @@
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20A%20%E2%80%93%20Mesopotamia%20%E2%80%9CProto%E2%8091Social%20Network%E2%80%9D%20Tablets.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER A — MESOPOTAMIA: PROTO-SOCIAL NETWORK TABLETS
                         </a>
                         <div class="file-subtitle">Clay Archive K-4857 :: Reputation Ledgers, Tally Marks &amp; the First "Comment Section"</div>
@@ -435,7 +401,7 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye seal // "Council of the Second Writing" — first attested</span>
                     </div>
-                    <a class="view-btn" href="Dossier-A-Mesopotamia-Proto-Social-Network-Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20A%20%E2%80%93%20Mesopotamia%20%E2%80%9CProto%E2%80%91Social%20Network%E2%80%9D%20Tablets.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
@@ -443,7 +409,7 @@
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20B%20%E2%80%93%20Silk%20Road%20%E2%80%9CAlgorithmic%20Feed%E2%80%9D%20Relay%20.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER B — SILK ROAD: ALGORITHMIC FEED RELAY
                         </a>
                         <div class="file-subtitle">Watchtower Complex 7 ("Thousand Eyes") :: Attention-Ranking, Notch Counters &amp; "The Circle"</div>
@@ -459,7 +425,7 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye plaque // "House of the Second Script" // "The Circle"</span>
                     </div>
-                    <a class="view-btn" href="Dossier-B-Silk-Road-Algorithmic-Feed-Relay.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20B%20%E2%80%93%20Silk%20Road%20%E2%80%9CAlgorithmic%20Feed%E2%80%9D%20Relay%20.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
@@ -467,7 +433,7 @@
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20C%20%E2%80%93%20%E2%80%9COpium%20of%20the%20People%E2%80%9D%20as%20Media%20Design%20Brief%20.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER C — OPIUM OF THE PEOPLE: MASS MEDIA DESIGN BRIEF
                         </a>
                         <div class="file-subtitle">Committee Minutes, Box 4857-E :: Marx's Metaphor Converted into a Programme for Mass Distraction</div>
@@ -483,7 +449,7 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: Nine-eye wax seal // Scriptum Secundum motto — first stated in full</span>
                     </div>
-                    <a class="view-btn" href="Dossier-C-Opium-of-the-People-as-Media-Design-Brief.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20C%20%E2%80%93%20%E2%80%9COpium%20of%20the%20People%E2%80%9D%20as%20Media%20Design%20Brief%20.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
@@ -491,7 +457,7 @@
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20D%20%E2%80%93%20Qing%20China%20%E2%80%9COpium%20Net%E2%80%9D%20%3A%20Dream%20Net%20Archive%20.pdf" target="_blank" rel="noopener noreferrer" class="file-name">
                             DOSSIER D — QING CHINA: DREAM NET / OPIUM NET ARCHIVE
                         </a>
                         <div class="file-subtitle">Canton Cache C-3 :: Narrative Sovereignty, Rumour Tracking &amp; the Hall of the Second Script</div>
@@ -507,7 +473,7 @@
                         &nbsp;
                         <span class="motif-tag"><span class="eye">◉</span> MOTIF: "Er Shu Tang" red seal // Hall of the Second Script // cross-dossier match confirmed</span>
                     </div>
-                    <a class="view-btn" href="Dossier-D-Qing-China-Opium-Net-Dream-Net-Archive.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20D%20%E2%80%93%20Qing%20China%20%E2%80%9COpium%20Net%E2%80%9D%20%3A%20Dream%20Net%20Archive%20.pdf" target="_blank" rel="noopener noreferrer">[ VIEW FILE ]</a>
                 </div>
             </div>
 
@@ -528,13 +494,11 @@
             <span class="toggle-icon" style="color:#ff6666;">▶</span>
         </div>
         <div class="file-list">
-            <p class="terminal-label">
-                &gt;&gt; CONVERGENCE POINT :: ALL PRIOR DOSSIER THREADS TERMINATE HERE
-            </p>
+            <p class="terminal-label">&gt;&gt; CONVERGENCE POINT :: ALL PRIOR DOSSIER THREADS TERMINATE HERE</p>
             <div class="file-item">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Military-files-DARPA-ARPANET-as-PSYOP.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#ff8888;">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Military%20files%20DARPA%20%3A%20ARPANET%20as%20PSYOP%20.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#ff8888;">
                             MILITARY FILES — DARPA / ARPANET AS PSYOP
                         </a>
                         <div class="file-subtitle" style="color:#993333;">Three Classified Memos (1969 / 1977 / 1983): PSYNET Subprogram, Dummy Profiles &amp; the "Internet" Frame</div>
@@ -548,9 +512,9 @@
                     <div>
                         <span class="file-status status-classified">TOP SECRET</span>
                         &nbsp;
-                        <span class="motif-tag" style="color:#993333;"><span style="color:#ff4444;">◉</span> MOTIF: Task Force 4857 // chain number matches Uruk archive K-4857 // PSYNET = operational name for entire sequence</span>
+                        <span class="motif-tag" style="color:#993333;"><span style="color:#ff4444;">◉</span> MOTIF: Task Force 4857 // chain number matches Uruk archive // PSYNET = operational name for entire sequence</span>
                     </div>
-                    <a class="view-btn" href="Military-files-DARPA-ARPANET-as-PSYOP.pdf" target="_blank" rel="noopener noreferrer" style="border-color:rgba(255,51,51,0.6); color:#ff8888;">[ VIEW FILE ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Military%20files%20DARPA%20%3A%20ARPANET%20as%20PSYOP%20.pdf" target="_blank" rel="noopener noreferrer" style="border-color:rgba(255,51,51,0.6); color:#ff8888;">[ VIEW FILE ]</a>
                 </div>
             </div>
             <div style="padding:12px 18px; font-size:0.75em; color:rgba(255,51,51,0.55); letter-spacing:2px; border-top:1px solid rgba(255,0,0,0.15); margin-top:10px;">
@@ -582,7 +546,7 @@
         </div>
     </div>
 
-    <!-- APPENDIX: SUPPLEMENTAL / CONTEMPORARY ECHOES -->
+    <!-- APPENDIX -->
     <div class="file-section appendix" style="border-color:#446644;">
         <div class="section-header" onclick="toggleSection(this)" style="background:#001a00; border-bottom-color:#446644;">
             <h2 style="color:#669966;">▸ APPENDIX :: CONTEMPORARY ECHOES &amp; SUPPLEMENTAL FILES</h2>
@@ -596,48 +560,48 @@
             <div class="file-item" style="border-left-color:#446644;">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="Mock-narrative-CIA-INTERNET.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Mock%20narrative%20CIA%20INTERNET.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
                             TECHNICAL MEMO — COMSAT / FBIS EARTH-STATION
                         </a>
-                        <div class="file-subtitle" style="color:#446644;">Mock-narrative-CIA-INTERNET.pdf</div>
+                        <div class="file-subtitle" style="color:#446644;">Mock narrative CIA INTERNET.pdf</div>
                     </div>
                 </div>
                 <div class="file-desc" style="color:#669966;">FBIS/COMSAT ground-station operations document. Technical infrastructure context; not part of the primary dossier sequence.</div>
                 <div class="file-footer">
                     <span class="file-status status-supplemental">SUPPLEMENTAL</span>
-                    <a class="view-btn" href="Mock-narrative-CIA-INTERNET.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Mock%20narrative%20CIA%20INTERNET.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
                 </div>
             </div>
 
             <div class="file-item" style="border-left-color:#446644;">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
                             CONTEMPORARY DATA — PLATFORM ILLITERACY / OVERCONFIDENCE
                         </a>
                         <div class="file-subtitle" style="color:#446644;">TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf</div>
                     </div>
                 </div>
-                <div class="file-desc" style="color:#669966;">Statistical profile of short-form video consumption and epistemic overconfidence. Modern datapoint for the PSYNET dummy-profile hypothesis.</div>
+                <div class="file-desc" style="color:#669966;">Statistical profile of short-form video consumption and epistemic overconfidence.</div>
                 <div class="file-footer">
                     <span class="file-status status-supplemental">SUPPLEMENTAL</span>
-                    <a class="view-btn" href="TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
                 </div>
             </div>
 
             <div class="file-item" style="border-left-color:#446644;">
                 <div class="file-item-meta">
                     <div class="file-title-block">
-                        <a href="POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
+                        <a href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" class="file-name" style="color:#669966; font-size:1.1em;">
                             CONTEMPORARY DATA — POLARISATION / EDUCATION CORRELATIONS
                         </a>
                         <div class="file-subtitle" style="color:#446644;">POLARIZATION_EDUCATION_CORRELATIONS.pdf</div>
                     </div>
                 </div>
-                <div class="file-desc" style="color:#669966;">Correlation study on political polarisation and educational attainment. Supplemental evidence for the fragmentation strategy outlined in the 1977 PSYNET memo.</div>
+                <div class="file-desc" style="color:#669966;">Correlation study on political polarisation and educational attainment.</div>
                 <div class="file-footer">
                     <span class="file-status status-supplemental">SUPPLEMENTAL</span>
-                    <a class="view-btn" href="POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
+                    <a class="view-btn" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer" style="border-color:#446644; color:#669966; font-size:0.7em;">[ VIEW ]</a>
                 </div>
             </div>
 
