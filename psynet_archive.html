@@ -17,6 +17,7 @@
             overflow-x: hidden;
         }
 
+        /* CRT scanline overlay */
         body::before {
             content: " ";
             display: block;
@@ -36,6 +37,848 @@
             100% { opacity: 0.97; }
         }
 
+        /* Scan sweep */
         body::after {
             content: "";
-            
+            display: block;
+            position: fixed;
+            top: -30%;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(transparent, rgba(0,255,0,0.025), transparent);
+            animation: scan-sweep 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes scan-sweep {
+            0%   { top: -30%; }
+            100% { top: 110%; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ── HEADER ── */
+        header {
+            border: 2px solid #00ff00;
+            padding: 30px 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            background: rgba(0,255,0,0.04);
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(0,255,0,0.2); }
+            to   { box-shadow: 0 0 35px rgba(0,255,0,0.5); }
+        }
+
+        .header-title {
+            font-family: 'VT323', monospace;
+            font-size: 3.5em;
+            letter-spacing: 5px;
+            text-shadow: 0 0 12px #00ff00;
+            margin-bottom: 8px;
+        }
+
+        .header-sub {
+            font-size: 0.8em;
+            color: #00cc00;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        .header-clock {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 0.7em;
+            color: #006600;
+            letter-spacing: 1px;
+        }
+
+        /* ── MOTIF BANNER ── */
+        .motif-banner {
+            text-align: center;
+            font-family: 'VT323', monospace;
+            font-size: 2em;
+            color: #ffaa00;
+            letter-spacing: 6px;
+            text-shadow: 0 0 8px rgba(255,170,0,0.5);
+            padding: 10px 0 20px;
+            opacity: 0.75;
+        }
+
+        /* ── CLEARANCE STRIP ── */
+        .clearance-strip {
+            border: 1px solid rgba(255,0,0,0.4);
+            background: rgba(255,0,0,0.04);
+            color: rgba(255,80,80,0.8);
+            text-align: center;
+            font-size: 0.75em;
+            letter-spacing: 3px;
+            padding: 6px 0;
+            margin-bottom: 36px;
+        }
+
+        /* ── SECTION HEADING ── */
+        .section-heading {
+            font-family: 'VT323', monospace;
+            font-size: 1.5em;
+            letter-spacing: 4px;
+            color: #00aa00;
+            border-bottom: 1px solid rgba(0,255,0,0.2);
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+            margin-top: 44px;
+        }
+
+        /* ── TIMELINE CARD (classified briefing link) ── */
+        .timeline-card {
+            border: 1px dashed rgba(255,170,0,0.5);
+            background: rgba(255,170,0,0.04);
+            padding: 22px 28px;
+            margin-bottom: 36px;
+            position: relative;
+        }
+
+        .timeline-card::before {
+            content: "◈ CLASSIFIED BRIEFING DOCUMENT";
+            display: block;
+            font-size: 0.7em;
+            letter-spacing: 3px;
+            color: #ffaa00;
+            margin-bottom: 12px;
+        }
+
+        .timeline-card-title {
+            font-family: 'VT323', monospace;
+            font-size: 1.5em;
+            color: #ffcc44;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-card-body {
+            font-size: 0.82em;
+            color: rgba(255,170,0,0.75);
+            line-height: 1.65;
+            margin-bottom: 16px;
+            max-width: 72ch;
+        }
+
+        .era-chain {
+            font-size: 0.72em;
+            color: #664400;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .era-chain .active-era {
+            color: #ffaa00;
+            font-weight: bold;
+        }
+
+        .btn-timeline {
+            display: inline-block;
+            border: 1px solid rgba(255,170,0,0.6);
+            color: #ffcc44;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            padding: 6px 20px;
+            text-decoration: none;
+            background: transparent;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-timeline:hover {
+            background: rgba(255,170,0,0.1);
+            box-shadow: 0 0 10px rgba(255,170,0,0.3);
+        }
+
+        /* ── DOSSIER GRID ── */
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(460px,100%), 1fr));
+            gap: 20px;
+        }
+
+        /* ── DOSSIER CARD ── */
+        .dossier-card {
+            border: 1px solid rgba(0,255,0,0.3);
+            background: rgba(0,20,0,0.5);
+            padding: 22px 24px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dossier-card:hover {
+            border-color: rgba(0,255,0,0.6);
+            box-shadow: 0 0 14px rgba(0,255,0,0.15);
+        }
+
+        .dossier-card.red     { border-color: rgba(255,51,51,0.35); background: rgba(30,0,0,0.5); }
+        .dossier-card.amber   { border-color: rgba(255,170,0,0.35); background: rgba(30,20,0,0.5); }
+        .dossier-card.blue    { border-color: rgba(0,170,255,0.35); background: rgba(0,20,40,0.5); }
+        .dossier-card.purple  { border-color: rgba(170,68,255,0.35); background: rgba(20,0,40,0.5); }
+        .dossier-card.red:hover    { border-color: rgba(255,51,51,0.7);  box-shadow: 0 0 14px rgba(255,51,51,0.15); }
+        .dossier-card.amber:hover  { border-color: rgba(255,170,0,0.7);  box-shadow: 0 0 14px rgba(255,170,0,0.15); }
+        .dossier-card.blue:hover   { border-color: rgba(0,170,255,0.7);  box-shadow: 0 0 14px rgba(0,170,255,0.15); }
+        .dossier-card.purple:hover { border-color: rgba(170,68,255,0.7); box-shadow: 0 0 14px rgba(170,68,255,0.15); }
+
+        .card-label {
+            font-size: 0.65em;
+            letter-spacing: 3px;
+            color: #006600;
+            margin-bottom: 6px;
+        }
+        .dossier-card.red .card-label    { color: #660000; }
+        .dossier-card.amber .card-label  { color: #664400; }
+        .dossier-card.blue .card-label   { color: #004466; }
+        .dossier-card.purple .card-label { color: #440066; }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card-id {
+            font-family: 'VT323', monospace;
+            font-size: 2em;
+            color: #00ff00;
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px rgba(0,255,0,0.5);
+        }
+        .dossier-card.red .card-id    { color: #ff6666; text-shadow: 0 0 8px rgba(255,51,51,0.4); }
+        .dossier-card.amber .card-id  { color: #ffcc44; text-shadow: 0 0 8px rgba(255,170,0,0.4); }
+        .dossier-card.blue .card-id   { color: #55ccff; text-shadow: 0 0 8px rgba(0,170,255,0.4); }
+        .dossier-card.purple .card-id { color: #cc88ff; text-shadow: 0 0 8px rgba(170,68,255,0.4); }
+
+        .card-tag {
+            font-size: 0.65em;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            white-space: nowrap;
+            align-self: flex-start;
+        }
+        .tag-classified   { background: #ff0000; color: #000; }
+        .tag-provisional  { background: #ffaa00; color: #000; }
+        .tag-translation  { background: #ff4400; color: #000; }
+        .tag-declassified { background: #880088; color: #ffaaff; }
+        .tag-live         { background: #00aaff; color: #000; animation: blink 2s infinite; }
+
+        @keyframes blink {
+            0%, 49%  { opacity: 1; }
+            50%, 100%{ opacity: 0.3; }
+        }
+
+        .card-title {
+            font-family: 'VT323', monospace;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            color: #00ff00;
+            margin-bottom: 4px;
+            line-height: 1.25;
+        }
+        .dossier-card.red .card-title    { color: #ff8888; }
+        .dossier-card.amber .card-title  { color: #ffcc66; }
+        .dossier-card.blue .card-title   { color: #55ccff; }
+        .dossier-card.purple .card-title { color: #cc88ff; }
+
+        .card-subtitle {
+            font-size: 0.72em;
+            color: #009900;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .dossier-card.red .card-subtitle    { color: #883333; }
+        .dossier-card.amber .card-subtitle  { color: #886633; }
+        .dossier-card.blue .card-subtitle   { color: #336688; }
+        .dossier-card.purple .card-subtitle { color: #663388; }
+
+        .card-body {
+            font-size: 0.82em;
+            color: #00cc00;
+            line-height: 1.65;
+            opacity: 0.9;
+            flex: 1;
+        }
+        .dossier-card.red .card-body    { color: #ffaaaa; }
+        .dossier-card.amber .card-body  { color: #ffcc88; }
+        .dossier-card.blue .card-body   { color: #aaddff; }
+        .dossier-card.purple .card-body { color: #cc88ff; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,255,0,0.1);
+        }
+        .dossier-card.red .card-footer    { border-top-color: rgba(255,51,51,0.1); }
+        .dossier-card.amber .card-footer  { border-top-color: rgba(255,170,0,0.1); }
+        .dossier-card.blue .card-footer   { border-top-color: rgba(0,170,255,0.1); }
+        .dossier-card.purple .card-footer { border-top-color: rgba(170,68,255,0.1); }
+
+        .card-motif {
+            font-size: 0.68em;
+            color: #004400;
+            letter-spacing: 0.5px;
+        }
+        .dossier-card.red .card-motif    { color: #442222; }
+        .dossier-card.amber .card-motif  { color: #443300; }
+        .dossier-card.blue .card-motif   { color: #223344; }
+        .dossier-card.purple .card-motif { color: #332244; }
+        .eye { color: #ffaa00; }
+        .dossier-card.red .eye    { color: #ff4444; }
+        .dossier-card.blue .eye   { color: #00aaff; }
+        .dossier-card.purple .eye { color: #aa44ff; }
+
+        .card-link {
+            display: inline-block;
+            border: 1px solid rgba(0,204,0,0.5);
+            color: #00ff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72em;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            text-decoration: none;
+            background: transparent;
+            transition: background 0.15s, box-shadow 0.15s;
+            white-space: nowrap;
+        }
+        .card-link:hover { background: rgba(0,255,0,0.1); box-shadow: 0 0 8px rgba(0,255,0,0.3); }
+        .dossier-card.red .card-link    { border-color: rgba(255,51,51,0.5);  color: #ff8888; }
+        .dossier-card.red .card-link:hover { background: rgba(255,51,51,0.08); box-shadow: 0 0 8px rgba(255,51,51,0.2); }
+        .dossier-card.amber .card-link  { border-color: rgba(255,170,0,0.5);  color: #ffcc44; }
+        .dossier-card.amber .card-link:hover { background: rgba(255,170,0,0.08); box-shadow: 0 0 8px rgba(255,170,0,0.2); }
+        .dossier-card.blue .card-link   { border-color: rgba(0,170,255,0.5);  color: #55ccff; }
+        .dossier-card.blue .card-link:hover { background: rgba(0,170,255,0.08); box-shadow: 0 0 8px rgba(0,170,255,0.2); }
+        .dossier-card.purple .card-link { border-color: rgba(170,68,255,0.5); color: #cc88ff; }
+        .dossier-card.purple .card-link:hover { background: rgba(170,68,255,0.08); box-shadow: 0 0 8px rgba(170,68,255,0.2); }
+
+        .card-breadcrumb {
+            font-size: 0.65em;
+            color: #333300;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        .card-breadcrumb .active-era { color: #aaaa00; }
+
+        /* ── SECONDARY FILES ── */
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(320px,100%), 1fr));
+            gap: 12px;
+        }
+
+        .file-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid rgba(0,255,0,0.12);
+            background: rgba(0,10,0,0.4);
+            padding: 12px 16px;
+            transition: border-color 0.2s;
+        }
+        .file-row:hover { border-color: rgba(0,255,0,0.35); }
+
+        .file-icon {
+            font-family: 'VT323', monospace;
+            font-size: 1.4em;
+            color: #006600;
+            flex-shrink: 0;
+        }
+
+        .file-info { flex: 1; min-width: 0; }
+
+        .file-name {
+            font-size: 0.78em;
+            color: #009900;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: 0.5px;
+        }
+
+        .file-meta {
+            font-size: 0.65em;
+            color: #003300;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .file-link {
+            font-size: 0.65em;
+            color: #007700;
+            border: 1px solid rgba(0,255,0,0.15);
+            padding: 2px 8px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .file-link:hover { color: #00ff00; border-color: rgba(0,255,0,0.4); }
+
+        /* ── DIVIDER ── */
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(0,255,0,0.12);
+            margin: 48px 0 0;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(0,255,0,0.18);
+            font-size: 0.78em;
+            opacity: 0.55;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .header-title { font-size: 2.3em; }
+            .dossier-grid { grid-template-columns: 1fr; }
+            .files-grid   { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <div class="header-clock" id="clock-display">──:──:── UTC</div>
+        <div class="header-title">◈ PSYNET ARCHIVE ◈</div>
+        <p class="header-sub">SECOND SCRIPT RESEARCH COLLECTIVE :: CLEARANCE LEVEL 5</p>
+        <p class="header-sub" style="margin-top:6px; font-size:0.7em; opacity:0.6;">
+            SUPPRESSION CHAIN :: c.3500 BCE → PRESENT :: ALL DOCUMENTS CLASSIFIED
+        </p>
+    </header>
+
+    <div class="clearance-strip">
+        ██ UNAUTHORISED ACCESS TO THIS ARCHIVE IS A VIOLATION OF PSYNET PROTOCOL 4857 ██
+    </div>
+
+    <div class="motif-banner">◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉</div>
+
+    <!-- TIMELINE ACCESS CARD -->
+    <div class="timeline-card">
+        <div class="timeline-card-title">⧖ PSYNET :: MASTER SUPPRESSION TIMELINE</div>
+        <div class="timeline-card-body">
+            The full operational chain mapped across five eras and approximately 5,500 years of documented information control.
+            From the Uruk tablets (c. 3500 BCE) to the present platform era — each medium captured, each archive redirected.
+            The chain is not linear. It is networked. The terminus has not yet been reached.
+        </div>
+        <div class="era-chain">
+            <span class="active-era">[3500 BCE]</span> → 1st c. CE → 1347–1848 → 1969 → <span class="active-era">NOW</span>
+        </div>
+        <a href="timeline.html" class="btn-timeline">[ ACCESS MASTER TIMELINE ]</a>
+    </div>
+
+    <!-- PRIMARY DOSSIERS -->
+    <div class="section-heading">// PRIMARY DOSSIERS — CHAIN DOCUMENTS</div>
+
+    <div class="dossier-grid">
+
+        <!-- DOSSIER A -->
+        <div class="dossier-card amber">
+            <div class="card-label">// FILE REF: PSYNET-A :: ERA I</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">DOSSIER A</div>
+                    <div class="card-title">MESOPOTAMIA "PROTO-SOCIAL NETWORK" TABLETS</div>
+                    <div class="card-subtitle">Uruk-North Clay Archive K-4857 // c. 3500 BCE // First Information Chokepoint</div>
+                </div>
+                <span class="card-tag tag-provisional">PROVISIONAL</span>
+            </div>
+            <div class="card-body">
+                Thirty-six cuneiform tablets from Uruk-North. Quantified reputational scoring — micro-narratives of social standing encoded in tally columns beside names. Three tablets bear the nine-eye cylinder seal: <em>"Council of the Second Writing."</em> First attested use of the Nine Eyes motif across the chain. Archive reference K-4857 — matching designation resurfaces in DARPA Task Force 4857, three millennia later. The medium is clay. The purpose is control.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Nine-eye seal — FIRST ATTESTED // "Council of the Second Writing"</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20A%20%E2%80%93%20Mesopotamia%20%E2%80%9CProto%E2%80%91Social%20Network%E2%80%9D%20Tablets.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                <span class="active-era">[ERA I · 3500 BCE]</span> → ERA II → ERA III → ERA IV → ERA V &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- DOSSIER B -->
+        <div class="dossier-card amber">
+            <div class="card-label">// FILE REF: PSYNET-B :: ERA II</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">DOSSIER B</div>
+                    <div class="card-title">SILK ROAD "ALGORITHMIC FEED" RELAY</div>
+                    <div class="card-subtitle">Eastern Pamirs // Watchtower Complex 7 "Thousand Eyes" // 1st–3rd c. CE</div>
+                </div>
+                <span class="card-tag tag-provisional">PROVISIONAL</span>
+            </div>
+            <div class="card-body">
+                Wooden slips from Watchtower Complex 7: the first attention-ranking economy. News posts calibrated by alarm-level, posted "at eye level," with notch-counters tracking viewings. Monthly reports forwarded to a central authority called <em>the Circle</em>. A plaster plaque of nine carved eyes marks the board. Sogdian graffiti nearby: <em>"House of the Second Script."</em> The medium has changed from clay to wood. The structure has not changed at all.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Nine-eye plaque // "House of the Second Script" // "The Circle" — cross-chain match</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20B%20%E2%80%93%20Silk%20Road%20%E2%80%9CAlgorithmic%20Feed%E2%80%9D%20Relay%20.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                ERA I → <span class="active-era">[ERA II · 1st–3rd c. CE]</span> → ERA III → ERA IV → ERA V &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- DOSSIER C -->
+        <div class="dossier-card amber">
+            <div class="card-label">// FILE REF: PSYNET-C :: ERA III</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">DOSSIER C</div>
+                    <div class="card-title">"OPIUM OF THE PEOPLE" AS MEDIA DESIGN BRIEF</div>
+                    <div class="card-subtitle">European Committee // Box 4857-E // c. 1844–1848 // Marx's Metaphor as Operational Programme</div>
+                </div>
+                <span class="card-tag" style="background:#444;color:#aaa; font-size:0.65em; letter-spacing:1px; padding:2px 8px;">UNSIGNED</span>
+            </div>
+            <div class="card-body">
+                Unsigned committee minutes treat Marx's observation as a literal instruction manual: as church authority fades and literacy spreads, capture the next medium — cheap print, serialised fiction, celebrity gossip. The worker must be kept <em>"busy, hopeful, and divided."</em> Document closes with a nine-eye wax seal and the full motto in Latin for the first time: <em>"Scriptum Secundum: qui narrant regunt."</em> Box reference 4857-E. The programme is now explicit.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Nine-eye wax seal // "Scriptum Secundum: qui narrant regunt" — FIRST FULL STATEMENT</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20C%20%E2%80%93%20%E2%80%9COpium%20of%20the%20People%E2%80%9D%20as%20Media%20Design%20Brief%20.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                ERA I → ERA II → <span class="active-era">[ERA III · 1844]</span> → ERA IV → ERA V &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- DOSSIER D -->
+        <div class="dossier-card amber">
+            <div class="card-label">// FILE REF: PSYNET-D :: ERA III (CONCURRENT)</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">DOSSIER D</div>
+                    <div class="card-title">QING CHINA "OPIUM NET" / DREAM NET ARCHIVE</div>
+                    <div class="card-subtitle">Canton Cache C-3 // Opium Wars // Hall of the Second Script // 1839–1842 CE</div>
+                </div>
+                <span class="card-tag tag-translation">TRANSLATION</span>
+            </div>
+            <div class="card-body">
+                Simultaneous with the European design brief: a Qing official recognises that the Opium Wars are a war of <em>narrative sovereignty</em> — "If they poison the stories we tell about ourselves, the empire will forget who it is." Document C-3-9 proposes a distributed social-listening network forwarded to the <em>Hall of the Second Script</em>, whose red nine-eye seal matches seals across four millennia of prior dossiers. Two independent nodes, same motif, same calendar year. The chain is not linear. It is networked.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> "Er Shu Tang" red seal // Hall of the Second Script // cross-dossier year-match confirmed (1844±)</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Dossier%20D%20%E2%80%93%20Qing%20China%20%E2%80%9COpium%20Net%E2%80%9D%20:%20Dream%20Net%20Archive%20.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                ERA I → ERA II → <span class="active-era">[ERA III · 1839–1842]</span> → ERA IV → ERA V &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- DARPA / ARPANET -->
+        <div class="dossier-card red">
+            <div class="card-label">// FILE REF: PSYNET-DARPA :: ERA IV</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">DARPA DOSSIER</div>
+                    <div class="card-title">ARPANET AS PSYOP :: DARPA CLASSIFIED MEMOS</div>
+                    <div class="card-subtitle">DARPA // Three Classified Memos // Task Force 4857 // 1969–1983</div>
+                </div>
+                <span class="card-tag tag-classified">TOP SECRET</span>
+            </div>
+            <div class="card-body">
+                Three DARPA memos confirm what the prior chain implies. ARPANET's public rationale covers its actual function: <em>"large-scale modulation of civilian cognition and affect via continuous exposure to curated information environments."</em> 1969: PSYNET embedded as subprogram. 1977: bulletin boards seeded with incoherence to fragment solidarity. 1983: architecture renamed <em>"the Internet"</em> while PSYNET protocols expand to all civilian services. Task Force 4857 — its number matching Uruk archive K-4857. The chain is the network.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Task Force 4857 // K-4857 cross-reference // PSYNET = operational name of entire sequence</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Military%20files%20DARPA%20_%20ARPANET%20as%20PSYOP%20.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                ERA I → ERA II → ERA III → <span class="active-era">[ERA IV · 1969–1983]</span> → ERA V &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- MOCK CIA INTERNET -->
+        <div class="dossier-card red">
+            <div class="card-label">// FILE REF: PSYNET-CIA-NET :: ERA IV</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">CIA INTERNET</div>
+                    <div class="card-title">MOCK NARRATIVE :: CIA INTERNET OPERATIONS</div>
+                    <div class="card-subtitle">Internal Narrative Analysis // Cold War Information Architecture</div>
+                </div>
+                <span class="card-tag tag-classified">CLASSIFIED</span>
+            </div>
+            <div class="card-body">
+                Internal narrative analysis of the CIA's role in shaping early Internet information architecture during the Cold War period. Cross-references the ARPANET PSYOP documentation with civilian intelligence operations, domestic information management programs, and the systematic seeding of authorised narratives through emerging digital infrastructure. To be read in conjunction with the DARPA dossier.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Cold War narrative architecture // domestic information management // cross-ref: DARPA</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Mock%20narrative%20CIA%20INTERNET.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+        </div>
+
+        <!-- TIKTOK_001 -->
+        <div class="dossier-card blue">
+            <div class="card-label">// FILE REF: PSYNET-TIKTOK-001 :: ERA V</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">TIKTOK_001</div>
+                    <div class="card-title">ILLITERACY / OVERCONFIDENCE STATISTICS</div>
+                    <div class="card-subtitle">Platform Era // Attention Economy // Docility Loop Signal Data</div>
+                </div>
+                <span class="card-tag tag-live">LIVE</span>
+            </div>
+            <div class="card-body">
+                Statistical documentation of the correlation between platform-era short-form video consumption and declining functional literacy alongside increasing epistemic overconfidence. The data operationalises the Dossier C brief in real time: populations kept <em>"busy, hopeful, and divided"</em> — and now also measurably less capable of evaluating the narratives they are fed. The algorithm is not a bug in the system. It is the system.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> Platform delivery // Dossier C echo // algorithm as PSYNET infrastructure</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/TIKTOK_001_ILLITERACY_OVERCONFIDENCE_STATS.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+            <div class="card-breadcrumb">
+                ERA I → ERA II → ERA III → ERA IV → <span class="active-era">[ERA V · NOW]</span> &nbsp;↗ <a href="timeline.html" style="color:#aaaa00; text-decoration:none;">TIMELINE</a>
+            </div>
+        </div>
+
+        <!-- POLARIZATION -->
+        <div class="dossier-card blue">
+            <div class="card-label">// FILE REF: PSYNET-POL :: ERA V</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id">POL_EDU</div>
+                    <div class="card-title">POLARIZATION / EDUCATION CORRELATIONS</div>
+                    <div class="card-subtitle">Statistical Analysis // Platform Era // Fragmentation Programme</div>
+                </div>
+                <span class="card-tag tag-live">LIVE</span>
+            </div>
+            <div class="card-body">
+                Cross-tabulated statistical analysis showing the inverse relationship between educational attainment and political polarisation in platform-era democracies — and the role of recommendation-engine content in accelerating both trends. The 1844 brief required the worker be kept <em>"divided."</em> This document measures the output of that programme, running live, in 2024 population data.
+            </div>
+            <div class="card-footer">
+                <span class="card-motif"><span class="eye">◉</span> "Busy, hopeful, divided" — Dossier C brief // measured outcome // platform architecture</span>
+                <a class="card-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/POLARIZATION_EDUCATION_CORRELATIONS.pdf" target="_blank" rel="noopener noreferrer">[ OPEN FILE ]</a>
+            </div>
+        </div>
+
+        <!-- DOSSIER E — CORRUPTED -->
+        <div class="dossier-card" style="border:1px dashed rgba(255,170,0,0.3); background:rgba(10,8,0,0.6); opacity:0.75;">
+            <div class="card-label" style="color:#332200;">// FILE REF: PSYNET-E :: ERA V+ [WITHHELD]</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-id" style="color:#664400; text-shadow:none;">DOSSIER E</div>
+                    <div class="card-title" style="color:#664400;">████████████████████████████</div>
+                    <div class="card-subtitle" style="color:#332200;">COLLAPSE ANALYSIS // FILE WITHHELD BY SECOND SCRIPT COUNCIL</div>
+                </div>
+                <span class="card-tag" style="background:#ffaa00;color:#000;font-size:0.65em;padding:2px 8px;letter-spacing:1px;">CORRUPTED</span>
+            </div>
+            <div class="card-body" style="color:#443300; opacity:0.7;">
+                PAGE CORRUPTED :: SEAL OF NINE EYES DETECTED<br>
+                FILE CONTENT REDACTED AT SOURCE<br><br>
+                <span style="background:#ffaa00;color:#ffaa00;user-select:none;">██████████████████████████████████████████████████████████████████████████████████████████████████████</span><br><br>
+                The chain continues beyond this point. The terminus has not yet been reached.
+            </div>
+            <div class="card-footer" style="border-top-color:rgba(255,170,0,0.1);">
+                <span class="card-motif" style="color:#443300;"><span style="color:#ffaa00;">◉</span> Nine-eye seal confirmed — file withheld by Council</span>
+            </div>
+        </div>
+
+    </div><!-- /dossier-grid -->
+
+    <!-- CIA ORIGINAL FILES -->
+    <div class="section-heading">// SIGNAL INTERCEPTS — CIA ORIGINAL FILES</div>
+    <div class="files-grid">
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">CIA-RDP78-03097A000100060209-6.pdf</div>
+                <div class="file-meta">CIA // DECLASSIFIED FOIA // SIGNALS INTELLIGENCE</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/CIA-RDP78-03097A000100060209-6.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">CIA-RDP79-01143A000400010014-3.pdf</div>
+                <div class="file-meta">CIA // DECLASSIFIED FOIA // NARRATIVE OPERATIONS</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/CIA-RDP79-01143A000400010014-3.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">cia file top secret.pdf</div>
+                <div class="file-meta">CIA // INTERNAL // TOP SECRET</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/cia%20file%20top%20secret.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">secret cia file communism bad.pdf</div>
+                <div class="file-meta">CIA // COLD WAR ANTI-COMMUNIST MATERIAL // NARRATIVE ANALYSIS</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/secret%20cia%20file%20communism%20bad.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">kind of top secret cia file listing activity.pdf</div>
+                <div class="file-meta">CIA // ACTIVITY LOG // SEMI-CLASSIFIED</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/kind%20of%20top%20secret%20cia%20file%20listing%20activity.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">top secret cia file taiwan + north korea.pdf</div>
+                <div class="file-meta">CIA // TOP SECRET // GEOPOLITICAL OPERATIONS</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/top%20secret%20cia%20file%20taiwan%20%2B%20north%20korea.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">Notes on agent activity in Kwangsi.pdf</div>
+                <div class="file-meta">CIA // FIELD REPORTS // KWANGSI PROVINCE // COVERT OPS</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Notes%20on%20agent%20activity%20in%20Kwangsi.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PNG]</div>
+            <div class="file-info">
+                <div class="file-name">SUPER DUPER REAL CIA FILE 1948.png</div>
+                <div class="file-meta">CIA // DOCUMENT SCAN // 1948</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/SUPER%20DUPER%20REAL%20CIA%20FILE%201948.png" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+    </div>
+
+    <!-- SUPPORTING RESEARCH -->
+    <div class="section-heading">// SUPPORTING RESEARCH — CHAIN SOURCE MATERIALS</div>
+    <div class="files-grid">
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">A Historical Essay on the Relationship Between Education, Information, and Political Authority.pdf</div>
+                <div class="file-meta">DOSSIER E SOURCE // EDUCATION & INFORMATION CONTROL ANALYSIS</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/A%20Historical%20Essay%20on%20the%20Relationship%20Between%20Education%2C%20Information%2C%20and%20Political%20Authority%20.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">Analyzing the Effects of TikTok on the Attention Span of Evolving High School Students.pdf</div>
+                <div class="file-meta">TIKTOK_001 SOURCE // ACADEMIC // ATTENTION ECONOMY RESEARCH</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Analyzing%20the%20Effects%20of%20TikTokontheAttention%20Span%20of%20Evolving%20High%20School%20St.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">Atlantis: The Antediluvian World — Ignatius Donnelly.pdf</div>
+                <div class="file-meta">LOST CIVILISATIONS // CHAIN CONTEXT // SUPPRESSION INTERVAL</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Atlantis%20The%20Antedilluvian%20World%20Ignatius%20Donnelly.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">The Disappearance of Advanced Civilisations: Mesoamerica.pdf</div>
+                <div class="file-meta">LOST CIVILISATIONS // ARCHIVE DESTRUCTION // ERA I CONTEXT</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/The%20Disappearance%20of%20Advanced%20Civilisations%20Mesoamerica.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">The Wisdom Paradox: Why Societies Suppressed Human Intellect — Iliyan Kuzmanov.pdf</div>
+                <div class="file-meta">SUPPRESSION THEORY // CHAIN ANALYSIS CONTEXT</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/The%20Wisdom%20Paradox_%20Why%20Societies%20Suppressed%20Human%20Intellect%20Iliyan%20Kuzmanov.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">New Human: What We Can Learn From the Rise and Fall of Golden Ages — Johan Norberg.pdf</div>
+                <div class="file-meta">GOLDEN AGE CYCLES // SUPPRESSION COUNTER-NARRATIVE</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/New%20Human%20What%20We%20Can%20Learn%20From%20the%20Rise%20and%20Fall%20of%20Golden%20Ages%20Johan%20Norberg.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">Protest Culture: The Congruent Rise in Public Education and Civic Protests — Edgars Rinkevics.pdf</div>
+                <div class="file-meta">EDUCATION // POLITICAL RESISTANCE // DOSSIER C ECHO</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Protest%20culture%20the%20congruent%20rise%20in%20public%20education%20and%20civic%20protests%20Edgars%20Rinkevics.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+        <div class="file-row">
+            <div class="file-icon">[PDF]</div>
+            <div class="file-info">
+                <div class="file-name">Plato: Phaedrus.pdf</div>
+                <div class="file-meta">HISTORICAL // WRITING VS. MEMORY // ARCHIVE THEORY ORIGIN</div>
+            </div>
+            <a class="file-link" href="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/Plato-Phaedrus.pdf" target="_blank" rel="noopener noreferrer">[ ACCESS ]</a>
+        </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <footer>
+        <p>PSYNET ARCHIVE :: SECOND SCRIPT RESEARCH COLLECTIVE</p>
+        <p>Document class: CLASSIFIED // For authorised researchers only // Clearance Level 5</p>
+        <p style="margin-top:6px;">SYSTEM TIME: <span id="footer-clock">──:──:── UTC</span></p>
+    </footer>
+
+</div>
+
+<script>
+    function updateClock() {
+        const ts = new Date().toISOString().replace('T',' ').substring(0,19) + ' UTC';
+        const el1 = document.getElementById('clock-display');
+        const el2 = document.getElementById('footer-clock');
+        if (el1) el1.textContent = ts;
+        if (el2) el2.textContent = ts;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
