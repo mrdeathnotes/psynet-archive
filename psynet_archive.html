@@ -469,6 +469,36 @@
             line-height: 1.7;
         }
 
+        /* CIA LETTER PAINT image block */
+        .cia-letter-img-block {
+            margin: 14px 0 4px;
+            border: 1px solid rgba(153,85,255,0.35);
+            background: rgba(10,0,24,0.6);
+            padding: 10px 12px;
+        }
+
+        .cia-letter-img-block .img-label {
+            font-size: 0.68em;
+            letter-spacing: 3px;
+            color: rgba(153,85,255,0.6);
+            margin-bottom: 8px;
+        }
+
+        .cia-letter-img-block img {
+            width: 100%;
+            max-width: 480px;
+            display: block;
+            filter: grayscale(20%) contrast(1.1) sepia(0.1);
+            border: 1px solid rgba(153,85,255,0.4);
+            cursor: pointer;
+            transition: filter 0.2s, box-shadow 0.2s;
+        }
+
+        .cia-letter-img-block img:hover {
+            filter: grayscale(0%) contrast(1.2) sepia(0);
+            box-shadow: 0 0 14px rgba(153,85,255,0.5);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             .section-header h2 { font-size: 1.1em; }
@@ -720,6 +750,15 @@
                             Class. changed to: TS(S)C &nbsp;|&nbsp; No Change in Class: ✗ &nbsp;|&nbsp; Status: STATINTL
                         </p>
                     </div>
+                </div>
+
+                <!-- CIA LETTER PAINT IMAGE — inserted below Kwangsi scan block -->
+                <div class="cia-letter-img-block">
+                    <div class="img-label">◈ SUPPLEMENTARY DOCUMENT SCAN :: CIA LETTER ◈</div>
+                    <img src="https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/cia%20letter.paint%20.png"
+                         alt="CIA letter document scan"
+                         onclick="window.open('https://raw.githubusercontent.com/mrdeathnotes/psynet-archive/main/cia%20letter.paint%20.png','_blank')"
+                         title="Click to view full image">
                 </div>
 
                 <div class="file-desc" style="color:#bb77ee;">
